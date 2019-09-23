@@ -1,0 +1,35 @@
+<p-table #dt [rows]="5" [value]="_OrderList" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th>
+                Busniess Name
+            </th>
+            <th>
+                Order No
+            </th>
+            <th>
+                Amount
+            </th>
+            <th style="width: 80px;">
+                Edit
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            <td>
+                {{rowData.business_name }}
+            </td>
+            <td>
+                <span class="pull-left">{{rowData.order_no}}</span>
+            </td>
+            <td>
+                <span class="pull-right">{{rowData.sub_total | currency:'INR':'symbol-narrow'}}</span>
+            </td>
+            <td>
+                <button pButton type="button" icon="pi pi-pencil" class="ui-button-info"
+                    (click)="Edit(rowData['order_no'])"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

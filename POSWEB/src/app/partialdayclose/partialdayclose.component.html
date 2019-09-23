@@ -1,0 +1,100 @@
+<!-- <p-header>
+  <div class="ui-g ui-fluid">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-12">
+        <p-card>
+          Opening Cash : {{_SalesData.opening_cash | currency:'INR':'symbol-narrow'}}
+        </p-card>
+      </div>
+      <div class="ui-g-12 ui-md-12">
+        <p-card>
+          Cash in Hand : {{(_SalesData.opening_cash -- _SalesData.total_cash_sales) | currency:'INR':'symbol-narrow'}}
+        </p-card>
+      </div>
+      <div class="ui-g-12 ui-md-12">
+        <p-card>
+          Cash Sales : {{_SalesData.total_cash_sales | currency:'INR':'symbol-narrow'}}
+        </p-card>
+      </div>
+      <div class="ui-g-12 ui-md-12">
+        <p-card>
+          Card Sales : {{_SalesData.total_card_sales | currency:'INR':'symbol-narrow'}}
+        </p-card>
+      </div>
+      <div class="ui-g-12 ui-md-12">
+        <p-card>
+          Total Sales :
+          {{(_SalesData.total_cash_sales -- _SalesData.total_card_sales) | currency:'INR':'symbol-narrow'}}
+        </p-card>
+      </div>
+    </div>
+  </div>
+</p-header>
+<p-footer class="pull-right">
+  <button pButton type="button" style="width: 100px;margin-right: 10px" label="Print" (click)="PrintDayClose()"
+    class="ui-button-icon-primary"></button>
+  <button pButton type="button" style="width: 100px;margin-right: 10px" label="Day Close" (click)="SaveDayClose()"
+    class="ui-button-success"></button>
+</p-footer> -->
+<!-- <p-panel header="Day Close"> -->
+<p-table #dt [rows]="1" [value]="_SalesData">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th>
+        <a (click)="PartialOpeningCash()"> Opening Cash (A) </a>
+      </th>
+      <th>
+        Cash Sales (B)
+      </th>
+      <th>
+        Card Sales (C)
+      </th>
+      <th>
+        Credit Sales (D)
+      </th>
+      <th>
+        Total Sales (E) = B + C + D
+      </th>
+      <th>
+        Cash in Hand (F) = A + B
+      </th>
+      <!-- <th style="width: 80px;">
+              Edit
+          </th> -->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td>
+        <span class="pull-left">{{rowData.opening_cash | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span class="pull-left">{{(rowData.total_cash_sales) | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.total_card_sales | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.total_credit_sales | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span
+          class="pull-left">{{rowData.total_cash_sales -- rowData.total_card_sales -- rowData.total_credit_sales | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span
+          class="pull-right">{{(rowData.total_cash_sales -- rowData.opening_cash) | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<!-- </p-panel> -->
+<br />
+<p-footer class="pull-right">
+  <!-- <button pButton type="button" style="width: 150px;margin-right: 10px" label="Adjust Amount"
+    (click)="SaveAmountAdjustment()" class="ui-button-success"></button> -->
+  <!-- <button pButton type="button" style="width: 100px;margin-right: 10px" label="Print" (click)="PrintDayClose()"
+    class="ui-button-icon-primary"></button> -->
+  <button pButton type="button" style="width: 100px;margin-right: 10px" label="Day Close" (click)="SaveDayClose()"
+    class="ui-button-success"></button>
+</p-footer>

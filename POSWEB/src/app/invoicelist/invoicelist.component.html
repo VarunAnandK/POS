@@ -1,0 +1,165 @@
+<p-table #dt [value]="_InvoiceList" [paginator]="false">
+  <ng-template pTemplate="caption">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-3">
+        <label>Start Date</label>
+        <p-calendar
+          [(ngModel)]="StartDate"
+          dateFormat="dd-M-yy"
+          [showIcon]="true"
+          [readonlyInput]="true"
+          [monthNavigator]="true"
+          [yearNavigator]="true"
+          yearRange="2000:2100"
+        ></p-calendar>
+      </div>
+      <div class="ui-g-3">
+        <label>End Date</label>
+        <p-calendar
+          [(ngModel)]="EndDate"
+          dateFormat="dd-M-yy"
+          [showIcon]="true"
+          [readonlyInput]="true"
+          [monthNavigator]="true"
+          [yearNavigator]="true"
+          yearRange="2000:2100"
+        ></p-calendar>
+      </div>
+      <div class="ui-g-4">
+        <label>Payment Method</label>
+        <p-dropdown
+          [options]="_PaymentMethodDropdown"
+          [style]="{ width: '100%' }"
+          [(ngModel)]="_selectedid"
+          [filter]="true"
+          name="_selectedid"
+        ></p-dropdown>
+      </div>
+      <div class="ui-g-1">
+        <br />
+        <button
+          pButton
+          type="button"
+          [disabled]="StartDate == null && EndDate == null"
+          style="margin-right: 10px"
+          label="Submit"
+          (click)="Submit()"
+          class="ui-button-icon-primary"
+        ></button>
+      </div>
+      <div class="ui-g-1">
+        <br />
+        <button
+          pButton
+          type="button"
+          [disabled]="StartDate == null && EndDate == null"
+          style="margin-right: 10px"
+          label="Print"
+          (click)="Print()"
+          class="ui-button-icon-primary"
+        ></button>
+      </div>
+      <!-- <div class="ui-g-5">
+        <br />
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input
+          type="text"
+          pInputText
+          size="50"
+          placeholder="Global Filter"
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          style="width:auto;height: 30px;"
+        />
+      </div> -->
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 120px;">
+        Invoice No
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Payment Method
+      </th>
+      <th>
+        Business Name
+      </th>
+      <th>
+        <span class="pull-right">Sub Total</span>
+      </th>
+      <th>
+        <span class="pull-right">Discount</span>
+      </th>
+      <th *ngIf="rgst_amount_total > 0">
+        <span class="pull-right">GST Amount</span>
+      </th>
+      <th>
+        <span class="pull-right">Round Off</span>
+      </th>
+      <th>
+        <span class="pull-right">Invoice Amount</span>
+      </th>
+      <th style="width: 80px;">
+        Print
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td style="width: 120px;">
+        {{rowData.invoice_no }}
+      </td>
+      <td>
+        <span class="pull-left">{{rowData.invoice_date}}</span>
+      </td>
+      <td>
+        <span class="pull-center">{{rowData.payment_method_name}}</span>
+      </td>
+      <td>
+        <span class="pull-center">{{rowData.business_name}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.sub_total | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.discount_amount | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td *ngIf="rgst_amount_total > 0">
+        <span class="pull-right">{{rowData.gst_amount | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.round_off_amount | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.invoice_amount | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <button pButton type="button" icon="pi pi-print" class="ui-button-info" (click)="Edit(rowData['invoice_id'])"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <tr>
+      <td colspan="4" style="text-align: right">Total</td>
+      <td style="text-align: right">
+        {{ rsub_total_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td style="text-align: right">
+        {{ rdiscount_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td style="text-align: right" *ngIf="rgst_amount_total > 0">
+        {{ rgst_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td style="text-align: right">
+        {{ rround_off_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td style="text-align: right">
+        {{ rinvoice_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td></td>
+    </tr>
+  </ng-template>
+</p-table>

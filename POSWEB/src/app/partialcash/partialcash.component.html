@@ -1,0 +1,302 @@
+<p-header>
+  <form [formGroup]="_PartialCashForm ">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-8">
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-12 ui-md-6">
+              <p-card>
+                <span style="color:violet">
+                  <strong>
+                    {{ _lable_no_of_total_items }} {{ _Items | number }}
+                  </strong>
+                </span>
+              </p-card>
+            </div>
+            <div class="ui-g-12 ui-md-6">
+              <p-card>
+                <span style="color:blue">
+                  <strong>
+                    {{ _lable_total_payable }}
+                    {{ _total_payable | currency: "INR":"symbol-narrow" }}
+                  </strong>
+                </span>
+              </p-card>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-12 ui-md-6">
+              <p-card>
+                <span style="color:orange">
+                  <strong>
+                    {{ _lable_total_Paid }}
+                    {{ _total_Paid | currency: "INR":"symbol-narrow" }}
+                  </strong>
+                </span>
+              </p-card>
+            </div>
+            <div class="ui-g-12 ui-md-6">
+              <p-card>
+                <span style="color:green">
+                  <strong>
+                    {{ _lable_balance_amount }}
+                    {{ _total_balance | currency: "INR":"symbol-narrow" }}
+                  </strong>
+                </span>
+              </p-card>
+            </div>
+          </div>
+          <!-- <div class="ui-g-12 ui-md-12">
+          <textarea style="width: 100%" pInputTextarea placeholder="Note" [(ngModel)]="_note" type="text" [rows]="3"
+            [cols]="55"></textarea>
+        </div> -->
+        </div>
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-6">
+            <label style="font-weight: bold"> Amount </label>
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="_amount"
+              class="form-control"
+              placeholder="Amount"
+              decimalpoint
+              (ngModelChange)="AmountCalculation($event)"
+              formControlName="amount"
+            />
+            <span
+              style="color: red"
+              *ngIf="
+                (_PartialCashForm.controls['amount'].dirty ||
+                  _PartialCashForm.controls['amount'].touched ||
+                  _PartialCashForm.controls['amount'].untouched ||
+                  _PartialCashForm.controls['amount'].valueChanges) &&
+                _PartialCashForm.controls['amount'].invalid
+              "
+            >
+              Note is required
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <label style="font-weight: bold"> Payment Method </label>
+            <p-dropdown
+              [options]="_paymentmethoddropdown"
+              [style]="{ width: '100%' }"
+              [filter]="true"
+              name="payment_method_id"
+              [(ngModel)]="_payment_method_id"
+              (ngModelChange)="AmountUpdate($event)"
+              formControlName="paymentmethodid"
+            ></p-dropdown>
+            <span
+              style="color: red"
+              *ngIf="
+                (_PartialCashForm.controls['paymentmethodid'].dirty ||
+                  _PartialCashForm.controls['paymentmethodid'].touched ||
+                  _PartialCashForm.controls['paymentmethodid'].untouched ||
+                  _PartialCashForm.controls['paymentmethodid'].valueChanges) &&
+                _PartialCashForm.controls['paymentmethodid'].invalid
+              "
+            >
+              Note is required
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-6">
+              <button
+                pButton
+                [disabled]="
+                  (_payment_method_id > 1 && _total_balance == 0) ||
+                  _payment_method_id == 2
+                "
+                label="10"
+                (click)="CashButtonClick($event, 10)"
+              ></button>
+              <button
+                pButton
+                [disabled]="
+                  (_payment_method_id > 1 && _total_balance == 0) ||
+                  _payment_method_id == 2
+                "
+                label="20"
+                (click)="CashButtonClick($event, 20)"
+              ></button>
+              <button
+                pButton
+                [disabled]="
+                  (_payment_method_id > 1 && _total_balance == 0) ||
+                  _payment_method_id == 2
+                "
+                label="50"
+                (click)="CashButtonClick($event, 50)"
+              ></button>
+              <button
+                pButton
+                [disabled]="
+                  (_payment_method_id > 1 && _total_balance == 0) ||
+                  _payment_method_id == 2
+                "
+                label="100"
+                (click)="CashButtonClick($event, 100)"
+              ></button>
+            </div>
+            <div class="ui-g-6">
+              <button
+                pButton
+                [disabled]="
+                  (_payment_method_id > 1 && _total_balance == 0) ||
+                  _payment_method_id == 2
+                "
+                label="200"
+                (click)="CashButtonClick($event, 200)"
+              ></button>
+              <button
+                pButton
+                [disabled]="
+                  (_payment_method_id > 1 && _total_balance == 0) ||
+                  _payment_method_id == 2
+                "
+                label="500"
+                (click)="CashButtonClick($event, 500)"
+              ></button>
+              <button
+                pButton
+                [disabled]="
+                  (_payment_method_id > 1 && _total_balance == 0) ||
+                  _payment_method_id == 2
+                "
+                label="2000"
+                (click)="CashButtonClick($event, 2000)"
+              ></button>
+              <button
+                pButton
+                [disabled]="
+                  (_payment_method_id > 1 && _total_balance == 0) ||
+                  _payment_method_id == 2
+                "
+                label="Clear"
+                (click)="CashButtonClick($event, 0)"
+              ></button>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12" *ngIf="!_IsNoteRequired">
+            <textarea
+              style="width: 100%"
+              pInputTextarea
+              placeholder="Note"
+              [(ngModel)]="_note"
+              type="text"
+              [rows]="3"
+              [cols]="55"
+              formControlName="note"
+            ></textarea>
+            <span
+              style="color: red"
+              *ngIf="
+                (_PartialCashForm.controls['note'].dirty ||
+                  _PartialCashForm.controls['note'].touched ||
+                  _PartialCashForm.controls['note'].untouched ||
+                  _PartialCashForm.controls['note'].valueChanges) &&
+                _PartialCashForm.controls['note'].invalid
+              "
+            >
+              Note is required
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-12" *ngIf="_IsNoteRequired">
+            <textarea
+              style="width: 100%"
+              pInputTextarea
+              placeholder="Credit`s Note"
+              [(ngModel)]="_noteCredit"
+              type="text"
+              [rows]="3"
+              [cols]="55"
+              formControlName="noteCredit"
+            ></textarea>
+            <span
+              style="color: red"
+              *ngIf="
+                (_PartialCashForm.controls['noteCredit'].dirty ||
+                  _PartialCashForm.controls['noteCredit'].touched ||
+                  _PartialCashForm.controls['noteCredit'].untouched ||
+                  _PartialCashForm.controls['noteCredit'].valueChanges) &&
+                _PartialCashForm.controls['noteCredit'].invalid
+              "
+            >
+              Credit`s Note is required
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</p-header>
+<p-footer class="pull-right">
+  <button
+    pButton
+    type="button"
+    style="margin-right: 10px"
+    label="Add Payment"
+    [disabled]="(_amount == 0 && _IsNoteRequired == false) || ((_noteCredit =='' || _noteCredit == undefined || _noteCredit == null) && _IsNoteRequired == true)"
+    (click)="SavePayment()"
+    class="ui-button-success"
+  ></button>
+  <!-- <button pButton type="button" style="margin-right: 10px" label="Payment Complete"
+    [hidden]="_total_Paid != _total_payable && _total_balance > 0" (click)="PaymentComplete()"
+    class="ui-button-success"></button> -->
+</p-footer>
+<br />
+<br />
+<p-panel header="Payment List">
+  <p-table #dt [value]="_OrderPaymentList" [paginator]="true" [rows]="5">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          Payment Mode
+        </th>
+        <th>
+          Amount
+        </th>
+        <!-- <th>
+          Balance
+        </th> -->
+        <th style="width: 80px;">
+          Delete
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td>
+          {{ rowData.payment_method.name }}
+        </td>
+        <td *ngIf="rowData.card_amount > 0">
+          {{ rowData.card_amount | currency: "INR":"symbol-narrow" }}
+        </td>
+        <td *ngIf="rowData.cash_amount > 0">
+          {{ rowData.cash_amount | currency: "INR":"symbol-narrow" }}
+        </td>
+        <td *ngIf="rowData.credit_amount > 0">
+          {{ rowData.credit_amount | currency: "INR":"symbol-narrow" }}
+        </td>
+        <!-- <td>
+          {{rowData.balance_amount | currency:'INR':'symbol-narrow'}}
+        </td> -->
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            class="ui-button-danger"
+            (click)="DeleteOrderPayment(rowData.id, rowData)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>

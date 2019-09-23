@@ -1,0 +1,37 @@
+<p-header>
+    <form [formGroup]="_UnitOfMeasurementForm">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <label style="font-weight: bold"> Unit Of Measurement </label>
+                <input pInputText formControlName="name" class="form-control" [(ngModel)]="_UnitOfMeasurementData.name"
+                    name="name" type="text" placeholder="Name" />
+                <span style="color: red"
+                    *ngIf="(_UnitOfMeasurementForm.controls['name'].dirty || _UnitOfMeasurementForm.controls['name'].touched || _UnitOfMeasurementForm.controls['name'].untouched || _UnitOfMeasurementForm.controls['name'].valueChanges) && _UnitOfMeasurementForm.controls['name'].invalid">
+                    Unit Of Measurement is required
+                </span>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                    <label style="font-weight: bold"> Code </label>
+                <input pInputText formControlName="code" class="form-control" [(ngModel)]="_UnitOfMeasurementData.code"
+                    name="code" type="text" placeholder="Code" />
+                <span style="color: red"
+                    *ngIf="(_UnitOfMeasurementForm.controls['code'].dirty || _UnitOfMeasurementForm.controls['code'].touched || _UnitOfMeasurementForm.controls['code'].untouched || _UnitOfMeasurementForm.controls['code'].valueChanges) && _UnitOfMeasurementForm.controls['code'].invalid">
+                    Code is required
+                </span>
+            </div>
+        </div>
+    </form>
+</p-header>
+<hr>
+<p-footer class="pull-right">
+    <button pButton type="button" *ngIf="_UnitOfMeasurementData.id == 0" [disabled]="_UnitOfMeasurementForm.invalid"
+        style="width: 100px;margin-right: 10px" label="Save" (click)="CreateOrUpdate()"
+        class="ui-button-success"></button>
+    <button pButton type="button" *ngIf="_UnitOfMeasurementData.id > 0" [disabled]="_UnitOfMeasurementForm.invalid"
+        style="width: 100px;margin-right: 10px" label="Update" (click)="CreateOrUpdate()"
+        class="ui-button-success"></button>
+    <button pButton type="button" style="width: 100px;margin-right: 10px" *ngIf="_UnitOfMeasurementData.id > 0" label="Delete"
+        (click)="Delete()" class="ui-button-danger"></button>
+</p-footer>

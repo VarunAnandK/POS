@@ -1,0 +1,38 @@
+<p-header>
+    <form [formGroup]="_GSTCategoryForm">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <label style="font-weight: bold"> Type </label>
+                <p-dropdown [options]="_typedropdown" [style]="{'width':'100%'}" [(ngModel)]="_GSTCategoryData.type"
+                    [filter]="true" name="type" formControlName="type"></p-dropdown>
+                <span style="color: red"
+                    *ngIf="(_GSTCategoryForm.controls['type'].dirty || _GSTCategoryForm.controls['type'].touched || _GSTCategoryForm.controls['type'].untouched || _GSTCategoryForm.controls['type'].valueChanges) && _GSTCategoryForm.controls['type'].invalid">
+                    Type is required
+                </span>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <label style="font-weight: bold"> GST Category </label>
+                <input pInputText formControlName="name" class="form-control" [(ngModel)]="_GSTCategoryData.name"
+                    name="name" type="text" placeholder="Name" />
+                <span style="color: red"
+                    *ngIf="(_GSTCategoryForm.controls['name'].dirty || _GSTCategoryForm.controls['name'].touched || _GSTCategoryForm.controls['name'].untouched || _GSTCategoryForm.controls['name'].valueChanges) && _GSTCategoryForm.controls['name'].invalid">
+                    GST Category is required
+                </span>
+            </div>
+        </div>
+
+    </form>
+</p-header>
+<hr>
+<p-footer class="pull-right">
+    <button pButton type="button" *ngIf="_GSTCategoryData.id == 0" [disabled]="_GSTCategoryForm.invalid"
+        style="width: 100px;margin-right: 10px" label="Save" (click)="CreateOrUpdate()"
+        class="ui-button-success"></button>
+    <button pButton type="button" *ngIf="_GSTCategoryData.id > 0" [disabled]="_GSTCategoryForm.invalid"
+        style="width: 100px;margin-right: 10px" label="Update" (click)="CreateOrUpdate()"
+        class="ui-button-success"></button>
+    <button pButton type="button" style="width: 100px;margin-right: 10px" *ngIf="_GSTCategoryData.id > 0" label="Delete"
+        (click)="Delete()" class="ui-button-danger"></button>
+</p-footer>

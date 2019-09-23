@@ -1,0 +1,69 @@
+<ul class="sidebar-menu" data-widget="tree">
+  <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['/Dashboard']">
+      <i class="fa fa-tachometer"></i> <span>Dashboard</span>
+    </a>
+  </li>
+  <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['/POS']">
+      <i class="fa fa-th"></i> <span>POS</span>
+    </a>
+  </li>
+  <!-- <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['/CompanyCreateOrUpdate/1']">
+      <i class="fa fa-building-o"></i> <span>Company</span>
+    </a>
+  </li> -->
+  <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['/Business']">
+      <i class="fa fa-users"></i> <span>Business</span>
+    </a>
+  </li>
+  <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+    <a [routerLink]="['/Product']">
+      <i class="fa fa-shopping-cart"></i> <span>Product</span>
+    </a>
+  </li>
+  <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+      <a [routerLink]="['/InvoiceList']">
+        <i class="fa fa-list"></i> <span>Invoice List</span>
+      </a>
+    </li>
+  <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="treeview">
+    <a href="#">
+      <i class="fa fa-cogs"></i>
+      <span>Setup</span>
+      <span class="pull-right-container">
+        <span class="label label-primary pull-right">7</span>
+      </span>
+    </a>
+    <ul class="treeview-menu">
+      <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/Country']"><i class="fa fa-circle-o"></i> Country</a></li> -->
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/State']"><i class="fa fa-circle-o"></i> State</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/City']"><i class="fa fa-circle-o"></i> City</a></li>
+      <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/Currency']"><i class="fa fa-circle-o"></i> Currency</a></li> -->
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/PaymentMethod']"><i class="fa fa-circle-o"></i> Payment Method</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/UnitOfMeasurement']"><i class="fa fa-circle-o"></i> Unit Of Measurement</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/BusinessCategory']"><i class="fa fa-circle-o"></i> Business Category</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/BusinessGroup']"><i class="fa fa-circle-o"></i> Discount Group</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/ProductCategory']"><i class="fa fa-circle-o"></i> Product Category</a></li>
+      <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/GSTCategory']"><i class="fa fa-circle-o"></i> GST Category</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/GST']"><i class="fa fa-circle-o"></i> GST</a></li> -->
+    </ul>
+  </li>
+  <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="treeview">
+    <a href="#">
+      <i class="fa fa-bar-chart-o"></i>
+      <span>Reports</span>
+      <span class="pull-right-container">
+        <span class="label label-primary pull-right">5</span>
+      </span>
+    </a>
+    <ul class="treeview-menu">
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/ProductSummary']"><i class="fa fa-circle-o"></i> Product Summary</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/BusinessSummary']"><i class="fa fa-circle-o"></i> Business Summary</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/DayBookSummary']"><i class="fa fa-circle-o"></i> Day Book</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/SalesRegister']"><i class="fa fa-circle-o"></i> Sales Register</a></li>
+    </ul>
+  </li>
+</ul>

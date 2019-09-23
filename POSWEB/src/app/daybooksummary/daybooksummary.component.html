@@ -1,0 +1,132 @@
+<p-panel header="Day Book List">
+  <p-table #dt [rows]="10" [value]="_DayBookSummaryList" [paginator]="true" [rows]="10"
+  [globalFilterFields]="['sales_start_date','sales_end_date','opening_cash','total_cash_sales','total_card_sales','total_credit_sales','total_sales']">
+    <ng-template pTemplate="caption">
+      <div class="ui-g ui-fluid">
+          <div class="ui-g-3">
+            <label>Start Date</label>
+            <p-calendar
+              [(ngModel)]="StartDate"
+              dateFormat="dd-M-yy"
+              [showIcon]="true"
+              [readonlyInput]="true"
+              [monthNavigator]="true"
+              [yearNavigator]="true"
+              yearRange="2000:2100"
+            ></p-calendar>
+          </div>
+          <div class="ui-g-3">
+            <label>End Date</label>
+            <p-calendar
+              [(ngModel)]="EndDate"
+              dateFormat="dd-M-yy"
+              [showIcon]="true"
+              [readonlyInput]="true"
+              [monthNavigator]="true"
+              [yearNavigator]="true"
+              yearRange="2000:2100"
+            ></p-calendar>
+          </div>
+          <div class="ui-g-1">
+            <br/>
+              <button
+              pButton
+              type="button"
+              [disabled]="StartDate == null && EndDate == null"
+              style="margin-right: 10px"
+              label="Submit"
+              (click)="Submit()"
+              class="ui-button-icon-primary"
+            ></button>
+          </div>
+          <div class="ui-g-5">
+              <br/>
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input
+              type="text"
+              pInputText
+              size="50"
+              placeholder="Global Filter"
+              (input)="dt.filterGlobal($event.target.value, 'contains')"
+              style="width:auto;height: 30px;"
+            />
+          </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>
+          <span class="pull-center">Sales Start</span>
+        </th>
+        <th>
+            <span class="pull-center">Sales End</span>
+          </th>
+        <th>
+          <span class="pull-right">Opening Cash</span>
+        </th>
+        <th>
+          <span class="pull-right">Cash Sales</span>
+        </th>
+        <th>
+          <span class="pull-right">Card Sales</span>
+        </th>
+        <th>
+          <span class="pull-right">Credit Sales</span>
+        </th>
+        <th>
+          <span class="pull-right">Total Sales</span>
+        </th>
+        <th style="width: 120px;">
+          Print
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td>
+          <span class="pull-center">{{rowData.sales_start_date}}</span>
+        </td>
+        <td>
+          <span class="pull-center">{{rowData.sales_end_date}}</span>
+        </td>
+        <td>
+          <span class="pull-right">{{rowData.opening_cash | currency:'INR':'symbol-narrow'}}</span>
+        </td>
+        <td>
+          <span class="pull-right">{{rowData.total_cash_sales | currency:'INR':'symbol-narrow'}}</span>
+        </td>
+        <td>
+          <span class="pull-right">{{rowData.total_card_sales | currency:'INR':'symbol-narrow'}}</span>
+        </td>
+        <td>
+          <span class="pull-right">{{rowData.total_credit_sales | currency:'INR':'symbol-narrow'}}</span>
+        </td>
+        <td>
+          <span class="pull-right">{{rowData.total_sales | currency:'INR':'symbol-narrow'}}</span>
+        </td>
+        <td>
+          <button pButton type="button" icon="pi pi-print" class="ui-button-info"
+            (click)="Print(rowData['sales_id'])" style="margin-right: 10px"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <tr>
+        <td colspan="3" style="text-align: right">Total</td>
+        <td style="text-align: right">
+          {{ rtotal_cash_sales | currency: "INR":"symbol-narrow" }}
+        </td>
+        <td style="text-align: right">
+          {{ rtotal_card_sales | currency: "INR":"symbol-narrow" }}
+        </td>
+        <td style="text-align: right">
+          {{ rtotal_credit_sales | currency: "INR":"symbol-narrow" }}
+        </td>
+        <td style="text-align: right">
+          {{ rtotal_sales | currency: "INR":"symbol-narrow" }}
+        </td>
+        <td></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>

@@ -1,0 +1,55 @@
+<p-panel header="GST {{_GstData.name }}">
+  <button pButton type="button" *ngIf="_GstData.id == 0" [disabled]="_GSTForm.invalid" (click)="InsertOrUpdate()"
+    style="width: 100px;" label="Save" class="ui-button-icon-primary"></button>
+  <button pButton type="button" *ngIf="_GstData.id > 0" [disabled]="_GSTForm.invalid" (click)="InsertOrUpdate()"
+    style="width: 100px;" label="Update" class="ui-button-icon-primary"></button>
+  <hr>
+  <form [formGroup]="_GSTForm">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12">
+        <label> GST </label>
+        <input pInputText formControlName="name" class="form-control" [(ngModel)]="_GstData.name" name="name"
+          type="text" placeholder="Name" />
+        <span style="color: red"
+          *ngIf="(_GSTForm.controls['name'].dirty || _GSTForm.controls['name'].touched || _GSTForm.controls['name'].untouched || _GSTForm.controls['name'].valueChanges) && _GSTForm.controls['name'].invalid">
+          GST is required
+        </span>
+      </div>
+    </div>
+  </form>
+</p-panel>
+<p-panel header="GST Detail List" *ngIf="_GstData.id > 0">
+  <button pButton type="button" style="width: 100px;" label="New" class="ui-button-icon-primary"
+    (click)="EditDetail(0)"></button>
+  <hr>
+  <p-table #dt [columns]="_TableDetailFields" [value]="_GSTDetailList" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="caption">
+      <div style="text-align: right">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Global Filter"
+          (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto;height: 30px;">
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+        <th style="width: 80px">
+          Edit
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td *ngFor="let col of columns">
+          {{ rowData[col.field] }}
+        </td>
+        <td>
+          <button pButton type="button" icon="pi pi-pencil" class="ui-button-info"
+            (click)="EditDetail(rowData['id'])"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>

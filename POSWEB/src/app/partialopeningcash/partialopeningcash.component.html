@@ -1,0 +1,19 @@
+<p-header>
+    <form [formGroup]="_OpeningCashForm">
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-12">
+                <input pInputText formControlName="_openingcash" class="form-control" [(ngModel)]="_openingcash"
+                    name="_openingcash" type="text" placeholder="Opening Cash" />
+                <span style="color: red"
+                    *ngIf="(_OpeningCashForm.controls['_openingcash'].dirty || _OpeningCashForm.controls['_openingcash'].touched || _OpeningCashForm.controls['_openingcash'].untouched || _OpeningCashForm.controls['_openingcash'].valueChanges) && _OpeningCashForm.controls['_openingcash'].invalid">
+                    Opening Cash is required
+                </span>
+            </div>
+        </div>
+    </form>
+</p-header>
+<hr>
+<p-footer class="pull-right">
+    <button pButton type="button" [disabled]="_OpeningCashForm.invalid"
+    style="width: 100px;margin-right: 10px" label="Save" (click)="SaveOpeningCash()" class="ui-button-success"></button>
+</p-footer>

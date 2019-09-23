@@ -1,0 +1,111 @@
+<p-panel header="Sales Register List">
+  <p-table
+    #dt
+    [rows]="10"
+    [value]="_SalesRegisterList"
+    [paginator]="true"
+    [rows]="10"
+    [globalFilterFields]="['month_name', 'sales_amount']"
+  >
+    <ng-template pTemplate="caption">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-3">
+          <label>Year</label>
+          <!-- <p-calendar
+            [(ngModel)]="StartDate"
+            view="month"
+            dateFormat="MM/yy"
+            [yearNavigator]="true"
+            yearRange="2000:2100"
+          ></p-calendar> -->
+          <p-dropdown
+            [options]="_yeardropdown"
+            [style]="{ width: '100%' }"
+            [(ngModel)]="_selectedyear"
+            [filter]="true"
+            name="_selectedyear"
+          ></p-dropdown>
+        </div>
+        <div class="ui-g-1">
+          <br />
+          <button
+            pButton
+            type="button"
+            [disabled]="StartDate == null"
+            style="margin-right: 10px"
+            label="Submit"
+            (click)="Submit()"
+            class="ui-button-icon-primary"
+          ></button>
+        </div>
+        <div class="ui-g-2">
+
+        </div>
+        <div class="ui-g-6">
+          <br />
+          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+          <input
+            type="text"
+            pInputText
+            size="50"
+            placeholder="Global Filter"
+            (input)="dt.filterGlobal($event.target.value, 'contains')"
+            style="width:auto;height: 30px;"
+          />
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>
+          Month
+        </th>
+        <th>
+          <span class="pull-right">Sales Amount</span>
+        </th>
+        <th style="width: 120px;">
+          Edit
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td>
+          {{ rowData.month_name }}
+        </td>
+        <td>
+          <span class="pull-right">{{
+            rowData.sales_amount | currency: "INR":"symbol-narrow"
+          }}</span>
+        </td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-pencil"
+            class="ui-button-info"
+            (click)="Edit(rowData['month_no'])"
+            style="margin-right: 10px"
+          ></button>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-print"
+            class="ui-button-info"
+            (click)="Print(rowData['month_no'])"
+            style="margin-right: 10px"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <tr>
+        <td colspan="1" style="text-align: right">Total</td>
+        <td style="text-align: right">
+          {{ rtotal | currency: "INR":"symbol-narrow" }}
+        </td>
+        <td></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>

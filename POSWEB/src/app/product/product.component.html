@@ -1,0 +1,37 @@
+<p-panel header="Product List">
+    <button pButton type="button" style="width: 100px;" label="New" class="ui-button-icon-primary"
+        (click)="Edit(0)"></button>
+    <hr>
+    <p-table #dt [columns]="_TableFields" [value]="_ProductList" [paginator]="true" [rows]="10" [lazy]="true"
+        (onLazyLoad)="loadProductLazy($event)" [totalRecords]="_ProducttotalRecords"
+        [loading]="_ProductTableLoading">
+        <ng-template pTemplate="caption">
+            <div style="text-align: right">
+                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                <input type="text" pInputText size="50" placeholder="Global Filter"
+                    (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto;height: 30px;">
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th style="width: 100px">
+                    Edit
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+                <td>
+                    <button pButton type="button" icon="pi pi-pencil" class="ui-button-info"
+                        (click)="Edit(rowData['id'])"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>

@@ -1,0 +1,37 @@
+<p-header>
+    <form [formGroup]="_CountryForm">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <label style="font-weight: bold"> Country </label>
+                <input pInputText formControlName="name" class="form-control" [(ngModel)]="_CountryData.name"
+                    name="name" type="text" placeholder="Name" />
+                <span style="color: red"
+                    *ngIf="(_CountryForm.controls['name'].dirty || _CountryForm.controls['name'].touched || _CountryForm.controls['name'].untouched || _CountryForm.controls['name'].valueChanges) && _CountryForm.controls['name'].invalid">
+                    Country is required
+                </span>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <label style="font-weight: bold"> Code </label>
+                <input pInputText formControlName="code" class="form-control" [(ngModel)]="_CountryData.code"
+                    name="code" type="text" placeholder="code" />
+                <span style="color: red"
+                    *ngIf="(_CountryForm.controls['code'].dirty || _CountryForm.controls['code'].touched || _CountryForm.controls['code'].untouched || _CountryForm.controls['code'].valueChanges) && _CountryForm.controls['code'].invalid">
+                    Country Code is required
+                </span>
+            </div>
+        </div>
+    </form>
+</p-header>
+<hr>
+<p-footer class="pull-right">
+    <button pButton type="button" *ngIf="_CountryData.id == 0" [disabled]="_CountryForm.invalid"
+        style="width: 100px;margin-right: 10px" label="Save" (click)="CreateOrUpdate()"
+        class="ui-button-success"></button>
+    <button pButton type="button" *ngIf="_CountryData.id > 0" [disabled]="_CountryForm.invalid"
+        style="width: 100px;margin-right: 10px" label="Update" (click)="CreateOrUpdate()"
+        class="ui-button-success"></button>
+    <button pButton type="button" style="width: 100px;margin-right: 10px" *ngIf="_CountryData.id > 0" label="Delete"
+        (click)="Delete()" class="ui-button-danger"></button>
+</p-footer>

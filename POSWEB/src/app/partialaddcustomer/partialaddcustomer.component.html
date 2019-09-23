@@ -1,0 +1,224 @@
+<p-header>
+  <form [formGroup]="_BusinessForm">
+    <!-- <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-6">
+        <label> Business </label>
+        <input pInputText formControlName="name" style="width:100%" [(ngModel)]="_BusinessData.name" name="name"
+          type="text" placeholder="Business" />
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['name'].dirty || _BusinessForm.controls['name'].touched || _BusinessForm.controls['name'].untouched || _BusinessForm.controls['name'].valueChanges) && _BusinessForm.controls['name'].invalid">
+          Business is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <label> Category </label>
+        <p-dropdown [options]="_businesscategorydropdown" [style]="{'width':'100%'}"
+          [(ngModel)]="_BusinessData.business_category_id" [filter]="true" name="business_category_id"
+          formControlName="business_category_id"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['business_category_id'].dirty || _BusinessForm.controls['business_category_id'].touched || _BusinessForm.controls['business_category_id'].untouched || _BusinessForm.controls['business_category_id'].valueChanges) && _BusinessForm.controls['business_category_id'].invalid">
+          Category is required
+        </span>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-4">
+        <label> Country </label>
+        <p-dropdown [options]="_countrydropdown" [style]="{'width':'100%'}" [(ngModel)]="_BusinessData.country_id"
+          [filter]="true" name="country_id" formControlName="country_id" (onChange)="GetState($event.value)">
+        </p-dropdown>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['country_id'].dirty || _BusinessForm.controls['country_id'].touched || _BusinessForm.controls['country_id'].untouched || _BusinessForm.controls['country_id'].valueChanges) && _BusinessForm.controls['country_id'].invalid">
+          Country is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <label> State </label>
+        <p-dropdown [options]="_statedropdown" [style]="{'width':'100%'}" [(ngModel)]="_BusinessData.state_id"
+          [filter]="true" name="state_id" formControlName="state_id" (onChange)="GetCity($event.value)"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['state_id'].dirty || _BusinessForm.controls['state_id'].touched || _BusinessForm.controls['state_id'].untouched || _BusinessForm.controls['state_id'].valueChanges) && _BusinessForm.controls['state_id'].invalid">
+          State is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <label> City </label>
+        <p-dropdown [options]="_citydropdown" [style]="{'width':'100%'}" [(ngModel)]="_BusinessData.city_id"
+          [filter]="true" name="city_id" formControlName="city_id"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['city_id'].dirty || _BusinessForm.controls['city_id'].touched || _BusinessForm.controls['city_id'].untouched || _BusinessForm.controls['city_id'].valueChanges) && _BusinessForm.controls['city_id'].invalid">
+          City is required
+        </span>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-4">
+        <label> Group </label>
+        <p-dropdown [options]="_businessgroupdropdown" [style]="{'width':'100%'}"
+          [(ngModel)]="_BusinessData.business_group_id" [filter]="true" name="business_group_id"
+          formControlName="business_group_id" placeholder="----- N/A -----"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['business_group_id'].dirty || _BusinessForm.controls['business_group_id'].touched || _BusinessForm.controls['business_group_id'].untouched || _BusinessForm.controls['business_group_id'].valueChanges) && _BusinessForm.controls['business_group_id'].invalid">
+          Group is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <label> Mobile No </label>
+        <input pInputText class="form-control" [(ngModel)]="_BusinessData.mobile_no" name="mobile_no" type="text"
+          placeholder="Mobile No" formControlName="mobile_no" />
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['mobile_no'].dirty || _BusinessForm.controls['mobile_no'].touched || _BusinessForm.controls['mobile_no'].untouched || _BusinessForm.controls['mobile_no'].valueChanges) && _BusinessForm.controls['mobile_no'].invalid">
+          Mobile No is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <label> Landline No </label>
+        <input pInputText class="form-control" [(ngModel)]="_BusinessData.landline_no" name="landline_no" type="text"
+          placeholder="Landline No" formControlName="landline_no" />
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['landline_no'].dirty || _BusinessForm.controls['landline_no'].touched || _BusinessForm.controls['landline_no'].untouched || _BusinessForm.controls['landline_no'].valueChanges) && _BusinessForm.controls['landline_no'].invalid">
+          Landline No is required
+        </span>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-6">
+        <label> Additional Mobile No </label>
+        <input pInputText class="form-control" [(ngModel)]="_BusinessData.additional_mobile_no"
+          name="additional_mobile_no" type="text" placeholder="Additional Mobile No"
+          formControlName="additional_mobile_no" />
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['additional_mobile_no'].dirty || _BusinessForm.controls['additional_mobile_no'].touched || _BusinessForm.controls['additional_mobile_no'].untouched || _BusinessForm.controls['additional_mobile_no'].valueChanges) && _BusinessForm.controls['additional_mobile_no'].invalid">
+          Additional Mobile No is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <label> Address </label>
+        <textarea style="width: 100%" pInputTextarea placeholder="Address" [(ngModel)]="_BusinessData.address"
+          type="text" name="address" [rows]="3" [cols]="55" formControlName="address"></textarea>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['address'].dirty || _BusinessForm.controls['address'].touched || _BusinessForm.controls['address'].untouched || _BusinessForm.controls['address'].valueChanges) && _BusinessForm.controls['address'].invalid">
+          Address is required
+        </span>
+      </div>
+    </div> -->
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-6">
+        <label> Business </label>
+        <input pInputText formControlName="name" style="width:100%" [(ngModel)]="_BusinessData.name" name="name"
+          type="text" placeholder="Business" />
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['name'].dirty || _BusinessForm.controls['name'].touched || _BusinessForm.controls['name'].untouched || _BusinessForm.controls['name'].valueChanges) && _BusinessForm.controls['name'].invalid">
+          Business is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <label> Category </label>
+        <p-dropdown [options]="_businesscategorydropdown" [style]="{'width':'100%'}"
+          [(ngModel)]="_BusinessData.business_category_id" [filter]="true" name="business_category_id"
+          formControlName="business_category_id"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['business_category_id'].dirty || _BusinessForm.controls['business_category_id'].touched || _BusinessForm.controls['business_category_id'].untouched || _BusinessForm.controls['business_category_id'].valueChanges) && _BusinessForm.controls['business_category_id'].invalid">
+          Category is required
+        </span>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-6">
+        <label> Contact Person </label>
+        <input pInputText class="form-control" [(ngModel)]="_BusinessData.contact_person_name"
+          name="contact_person_name" type="text" placeholder="Contact Person Name"
+          formControlName="contact_person_name" />
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['contact_person_name'].dirty || _BusinessForm.controls['contact_person_name'].touched || _BusinessForm.controls['contact_person_name'].untouched || _BusinessForm.controls['contact_person_name'].valueChanges) && _BusinessForm.controls['contact_person_name'].invalid">
+          Contact Person is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <label> Contact Person Mobile No </label>
+        <input pInputText class="form-control" [(ngModel)]="_BusinessData.additional_mobile_no"
+          name="additional_mobile_no" type="text" placeholder="Contact Person Mobile No"
+          formControlName="additional_mobile_no" />
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['additional_mobile_no'].dirty || _BusinessForm.controls['additional_mobile_no'].touched || _BusinessForm.controls['additional_mobile_no'].untouched || _BusinessForm.controls['additional_mobile_no'].valueChanges) && _BusinessForm.controls['additional_mobile_no'].invalid">
+          Contact Person Mobile No is required
+        </span>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-4">
+        <label> Discount Group </label>
+        <p-dropdown [options]="_businessgroupdropdown" [style]="{'width':'100%'}"
+          [(ngModel)]="_BusinessData.business_group_id" [filter]="true" name="business_group_id"
+          formControlName="business_group_id" placeholder="----- N/A -----"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['business_group_id'].dirty || _BusinessForm.controls['business_group_id'].touched || _BusinessForm.controls['business_group_id'].untouched || _BusinessForm.controls['business_group_id'].valueChanges) && _BusinessForm.controls['business_group_id'].invalid">
+          Discount Group is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <label> Mobile No </label>
+        <input pInputText class="form-control" [(ngModel)]="_BusinessData.mobile_no" name="mobile_no" type="text"
+          placeholder="Mobile No" formControlName="mobile_no" />
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['mobile_no'].dirty || _BusinessForm.controls['mobile_no'].touched || _BusinessForm.controls['mobile_no'].untouched || _BusinessForm.controls['mobile_no'].valueChanges) && _BusinessForm.controls['mobile_no'].invalid">
+          Mobile No is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <label> Landline No </label>
+        <input pInputText class="form-control" [(ngModel)]="_BusinessData.landline_no" name="landline_no" type="text"
+          placeholder="Landline No" formControlName="landline_no" />
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['landline_no'].dirty || _BusinessForm.controls['landline_no'].touched || _BusinessForm.controls['landline_no'].untouched || _BusinessForm.controls['landline_no'].valueChanges) && _BusinessForm.controls['landline_no'].invalid">
+          Landline No is required
+        </span>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-6">
+        <label> Address </label>
+        <textarea style="width: 100%" pInputTextarea placeholder="Address" [(ngModel)]="_BusinessData.address"
+          type="text" name="address" [rows]="7" [cols]="55" formControlName="address"></textarea>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['address'].dirty || _BusinessForm.controls['address'].touched || _BusinessForm.controls['address'].untouched || _BusinessForm.controls['address'].valueChanges) && _BusinessForm.controls['address'].invalid">
+          Address is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <label> Country </label>
+        <p-dropdown [options]="_countrydropdown" [style]="{'width':'100%'}" [(ngModel)]="_BusinessData.country_id"
+          [filter]="true" name="country_id" formControlName="country_id" (onChange)="GetState($event.value)">
+        </p-dropdown>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['country_id'].dirty || _BusinessForm.controls['country_id'].touched || _BusinessForm.controls['country_id'].untouched || _BusinessForm.controls['country_id'].valueChanges) && _BusinessForm.controls['country_id'].invalid">
+          Country is required
+        </span>
+        <br />
+        <label> State </label>
+        <p-dropdown [options]="_statedropdown" [style]="{'width':'100%'}" [(ngModel)]="_BusinessData.state_id"
+          [filter]="true" name="state_id" formControlName="state_id" (onChange)="GetCity($event.value)"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['state_id'].dirty || _BusinessForm.controls['state_id'].touched || _BusinessForm.controls['state_id'].untouched || _BusinessForm.controls['state_id'].valueChanges) && _BusinessForm.controls['state_id'].invalid">
+          State is required
+        </span>
+        <br />
+        <label> City </label>
+        <p-dropdown [options]="_citydropdown" [style]="{'width':'100%'}" [(ngModel)]="_BusinessData.city_id"
+          [filter]="true" name="city_id" formControlName="city_id"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_BusinessForm.controls['city_id'].dirty || _BusinessForm.controls['city_id'].touched || _BusinessForm.controls['city_id'].untouched || _BusinessForm.controls['city_id'].valueChanges) && _BusinessForm.controls['city_id'].invalid">
+          City is required
+        </span>
+      </div>
+    </div>
+  </form>
+</p-header>
+<hr>
+<p-footer class="pull-right">
+  <button pButton type="button" *ngIf="_BusinessData.id == 0" [disabled]="_BusinessForm.invalid"
+    style="width: 100px;margin-right: 10px" label="Save" (click)="CreateOrUpdate()" class="ui-button-success"></button>
+  <button pButton type="button" *ngIf="_BusinessData.id > 0" [disabled]="_BusinessForm.invalid"
+    style="width: 100px;margin-right: 10px" label="Update" (click)="CreateOrUpdate()"
+    class="ui-button-success"></button>
+</p-footer>

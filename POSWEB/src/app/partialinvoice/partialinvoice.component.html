@@ -1,0 +1,107 @@
+<p-table #dt [rows]="5" [value]="_InvoiceList" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="caption">
+    <div style="text-align: right">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input type="text" pInputText size="50" placeholder="Global Filter"
+        (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto;height: 30px;">
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th>
+        Full No
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Order No
+      </th>
+      <th>
+        Business Name
+      </th>
+      <th>
+        Sub Total
+      </th>
+      <th *ngIf="rgst_amount_total > 0">
+        GST Amount
+      </th>
+      <th>
+        Discount
+      </th>
+      <th>
+        Round Off
+      </th>
+      <th>
+        Invoice Amount
+      </th>
+      <th>
+        Balance Amount
+      </th>
+      <th style="width: 80px;">
+        Print
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td>
+        {{rowData.invoice_full_no }}
+      </td>
+      <td>
+        <span class="pull-left">{{rowData.created_on}}</span>
+      </td>
+      <td>
+        <span class="pull-center">{{rowData.order_no}}</span>
+      </td>
+      <td>
+        <span class="pull-center">{{rowData.business.name}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.sub_total | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td *ngIf="rgst_amount_total > 0">
+        <span class="pull-right">{{rowData.gst_amount | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.discount_amount | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.round_off | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.invoice_amount | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <span class="pull-right">{{rowData.balance_amount | currency:'INR':'symbol-narrow'}}</span>
+      </td>
+      <td>
+        <button pButton type="button" icon="pi pi-print" class="ui-button-info" (click)="Edit(rowData['id'])"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <tr>
+      <td colspan="4" style="text-align: right">Total</td>
+      <td style="text-align: right">
+        {{ rsub_total_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td style="text-align: right" *ngIf="rgst_amount_total > 0">
+        {{ rgst_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td style="text-align: right">
+        {{ rdiscount_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td style="text-align: right">
+        {{ rround_off_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td style="text-align: right">
+        {{ rinvoice_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td style="text-align: right">
+        {{ rbalance_amount_total | currency: "INR":"symbol-narrow" }}
+      </td>
+      <td></td>
+    </tr>
+  </ng-template>
+</p-table>

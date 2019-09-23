@@ -1,0 +1,436 @@
+[2019-05-06 05:28:35] local.ERROR: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ (SQL: select * from `user`) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 2002): SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ (SQL: select * from `user`) at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, Doctrine\\DBAL\\Driver\\PDOException(code: 2002): SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOConnection.php:31, PDOException(code: 2002): SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+ at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOConnection.php:27)
+[stacktrace]
+#0 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(333): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#2 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2100): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#3 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2088): Illuminate\\Database\\Query\\Builder->runSelect()
+#4 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2574): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#5 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2089): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#6 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(519): Illuminate\\Database\\Query\\Builder->get(Array)
+#7 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(503): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#8 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(458): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#9 E:\\Backup\\04-May-2019\\POSAPI\\app\\Http\\Repositories\\Repository.php(16): Illuminate\\Database\\Eloquent\\Model::all()
+#10 E:\\Backup\\04-May-2019\\POSAPI\\app\\Http\\Controllers\\ApiController\\UserController.php(67): App\\Http\\Repositories\\Repository->GetAll()
+#11 [internal function]: App\\Http\\Controllers\\ApiController\\UserController->ValidateUser(Object(Illuminate\\Http\\Request))
+#12 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#13 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('ValidateUser', Array)
+#14 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\ApiController\\UserController), 'ValidateUser')
+#15 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#16 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(680): Illuminate\\Routing\\Route->run()
+#17 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#18 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#19 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#20 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(657): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#21 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(623): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#22 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(612): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#23 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#24 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#25 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\spatie\\laravel-cors\\src\\Cors.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#26 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Spatie\\Cors\\Cors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#29 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#32 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#35 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#38 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#41 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#44 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#45 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#46 E:\\Backup\\04-May-2019\\POSAPI\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#47 E:\\Backup\\04-May-2019\\POSAPI\\server.php(21): require_once('E:\\\\Backup\\\\04-Ma...')
+#48 {main}
+"} 
+[2019-05-06 11:26:56] local.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1140 Mixing of GROUP columns (MIN(),MAX(),COUNT(),...) with no GROUP columns is illegal if there is no GROUP BY clause (SQL: 	select
+        invoice.invoice_full_no,
+        invoice.invoice_date,
+        business.name as business_name,
+        invoice.invoice_amount,
+        invoice.discount_amount,
+        invoice.balance_amount,
+        invoice.gst_amount,
+        product.hsnorsac,
+        product.barcode,
+        product.name as product_name,
+        invoice_detail.qty,
+        invoice_detail.sub_total,
+        invoice_detail.total,
+        SUM(invoice_detail.qty) as total_count,
+        business.NAME as businessname,
+        company.name as company_name,
+        company.address as company_address,
+        company.website as company_website,
+        company.gst_no as company_gst_no,
+        company.logo as logo
+        FROM
+                invoice_detail
+        inner JOIN
+                invoice
+        ON
+                invoice.id  = invoice_detail.invoice_id
+        inner JOIN
+                business
+        ON
+                invoice.business_id  = business.id
+        inner JOIN
+                product
+        ON
+                invoice_detail.product_id  = product.id
+        cross JOIN
+                company
+        WHERE
+                invoice.id = '5'
+        ) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1140 Mixing of GROUP columns (MIN(),MAX(),COUNT(),...) with no GROUP columns is illegal if there is no GROUP BY clause (SQL: \tselect
+        invoice.invoice_full_no,
+        invoice.invoice_date,
+        business.name as business_name,
+        invoice.invoice_amount,
+        invoice.discount_amount,
+        invoice.balance_amount,
+        invoice.gst_amount,
+        product.hsnorsac,
+        product.barcode,
+        product.name as product_name,
+        invoice_detail.qty,
+        invoice_detail.sub_total,
+        invoice_detail.total,
+        SUM(invoice_detail.qty) as total_count,
+        business.NAME as businessname,
+        company.name as company_name,
+        company.address as company_address,
+        company.website as company_website,
+        company.gst_no as company_gst_no,
+        company.logo as logo
+        FROM
+                invoice_detail
+        inner JOIN
+                invoice
+        ON
+                invoice.id  = invoice_detail.invoice_id
+        inner JOIN
+                business
+        ON
+                invoice.business_id  = business.id
+        inner JOIN
+                product
+        ON
+                invoice_detail.product_id  = product.id
+        cross JOIN
+                company
+        WHERE
+                invoice.id = '5'
+        ) at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, Doctrine\\DBAL\\Driver\\PDOException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1140 Mixing of GROUP columns (MIN(),MAX(),COUNT(),...) with no GROUP columns is illegal if there is no GROUP BY clause at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOConnection.php:63, PDOException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1140 Mixing of GROUP columns (MIN(),MAX(),COUNT(),...) with no GROUP columns is illegal if there is no GROUP BY clause at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOConnection.php:61)
+[stacktrace]
+#0 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback(Object(Illuminate\\Database\\Query\\Expression), Array, Object(Closure))
+#1 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(333): Illuminate\\Database\\Connection->run(Object(Illuminate\\Database\\Query\\Expression), Array, Object(Closure))
+#2 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\DatabaseManager.php(347): Illuminate\\Database\\Connection->select(Object(Illuminate\\Database\\Query\\Expression))
+#3 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(237): Illuminate\\Database\\DatabaseManager->__call('select', Array)
+#4 E:\\Backup\\04-May-2019\\POSAPI\\app\\Http\\Controllers\\ApiController\\InvoiceController.php(101): Illuminate\\Support\\Facades\\Facade::__callStatic('select', Array)
+#5 [internal function]: App\\Http\\Controllers\\ApiController\\InvoiceController->InvoicePrint('5')
+#6 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#7 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('InvoicePrint', Array)
+#8 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\ApiController\\InvoiceController), 'InvoicePrint')
+#9 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#10 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(680): Illuminate\\Routing\\Route->run()
+#11 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#12 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#13 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#14 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(657): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#15 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(623): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#16 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(612): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#17 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#18 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#19 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\spatie\\laravel-cors\\src\\Cors.php(28): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#20 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Spatie\\Cors\\Cors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#23 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#26 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#29 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#32 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#35 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#38 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#39 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#40 E:\\Backup\\04-May-2019\\POSAPI\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#41 E:\\Backup\\04-May-2019\\POSAPI\\server.php(21): require_once('E:\\\\Backup\\\\04-Ma...')
+#42 {main}
+"} 
+[2019-05-06 11:30:00] local.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1055 'pos.invoice.invoice_full_no' isn't in GROUP BY (SQL: 	select
+        invoice.invoice_full_no,
+        invoice.invoice_date,
+        business.name as business_name,
+        invoice.invoice_amount,
+        invoice.discount_amount,
+        invoice.balance_amount,
+        invoice.gst_amount,
+        product.hsnorsac,
+        product.barcode,
+        product.name as product_name,
+        invoice_detail.qty,
+        invoice_detail.sub_total,
+        invoice_detail.total,
+        SUM(invoice_detail.qty) as total_count,
+        business.NAME as businessname,
+        company.name as company_name,
+        company.address as company_address,
+        company.website as company_website,
+        company.gst_no as company_gst_no,
+        company.logo as logo
+        FROM
+                invoice_detail
+        inner JOIN
+                invoice
+        ON
+                invoice.id  = invoice_detail.invoice_id
+        inner JOIN
+                business
+        ON
+                invoice.business_id  = business.id
+        inner JOIN
+                product
+        ON
+                invoice_detail.product_id  = product.id
+        cross JOIN
+                company
+        WHERE
+                invoice.id = '5'
+        GROUP By
+                invoice.invoice_no
+        ) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1055 'pos.invoice.invoice_full_no' isn't in GROUP BY (SQL: \tselect
+        invoice.invoice_full_no,
+        invoice.invoice_date,
+        business.name as business_name,
+        invoice.invoice_amount,
+        invoice.discount_amount,
+        invoice.balance_amount,
+        invoice.gst_amount,
+        product.hsnorsac,
+        product.barcode,
+        product.name as product_name,
+        invoice_detail.qty,
+        invoice_detail.sub_total,
+        invoice_detail.total,
+        SUM(invoice_detail.qty) as total_count,
+        business.NAME as businessname,
+        company.name as company_name,
+        company.address as company_address,
+        company.website as company_website,
+        company.gst_no as company_gst_no,
+        company.logo as logo
+        FROM
+                invoice_detail
+        inner JOIN
+                invoice
+        ON
+                invoice.id  = invoice_detail.invoice_id
+        inner JOIN
+                business
+        ON
+                invoice.business_id  = business.id
+        inner JOIN
+                product
+        ON
+                invoice_detail.product_id  = product.id
+        cross JOIN
+                company
+        WHERE
+                invoice.id = '5'
+        GROUP By
+                invoice.invoice_no
+        ) at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, Doctrine\\DBAL\\Driver\\PDOException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1055 'pos.invoice.invoice_full_no' isn't in GROUP BY at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOConnection.php:63, PDOException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1055 'pos.invoice.invoice_full_no' isn't in GROUP BY at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOConnection.php:61)
+[stacktrace]
+#0 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback(Object(Illuminate\\Database\\Query\\Expression), Array, Object(Closure))
+#1 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(333): Illuminate\\Database\\Connection->run(Object(Illuminate\\Database\\Query\\Expression), Array, Object(Closure))
+#2 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\DatabaseManager.php(347): Illuminate\\Database\\Connection->select(Object(Illuminate\\Database\\Query\\Expression))
+#3 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(237): Illuminate\\Database\\DatabaseManager->__call('select', Array)
+#4 E:\\Backup\\04-May-2019\\POSAPI\\app\\Http\\Controllers\\ApiController\\InvoiceController.php(101): Illuminate\\Support\\Facades\\Facade::__callStatic('select', Array)
+#5 [internal function]: App\\Http\\Controllers\\ApiController\\InvoiceController->InvoicePrint('5')
+#6 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#7 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('InvoicePrint', Array)
+#8 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\ApiController\\InvoiceController), 'InvoicePrint')
+#9 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#10 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(680): Illuminate\\Routing\\Route->run()
+#11 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#12 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#13 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#14 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(657): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#15 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(623): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#16 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(612): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#17 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#18 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#19 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\spatie\\laravel-cors\\src\\Cors.php(28): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#20 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Spatie\\Cors\\Cors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#23 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#26 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#29 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#32 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#35 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#38 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#39 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#40 E:\\Backup\\04-May-2019\\POSAPI\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#41 E:\\Backup\\04-May-2019\\POSAPI\\server.php(21): require_once('E:\\\\Backup\\\\04-Ma...')
+#42 {main}
+"} 
+[2019-05-06 11:30:24] local.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1055 'pos.invoice.invoice_date' isn't in GROUP BY (SQL: 	select
+        invoice.invoice_full_no,
+        invoice.invoice_date,
+        business.name as business_name,
+        invoice.invoice_amount,
+        invoice.discount_amount,
+        invoice.balance_amount,
+        invoice.gst_amount,
+        product.hsnorsac,
+        product.barcode,
+        product.name as product_name,
+        invoice_detail.qty,
+        invoice_detail.sub_total,
+        invoice_detail.total,
+        SUM(invoice_detail.qty) as total_count,
+        business.NAME as businessname,
+        company.name as company_name,
+        company.address as company_address,
+        company.website as company_website,
+        company.gst_no as company_gst_no,
+        company.logo as logo
+        FROM
+                invoice_detail
+        inner JOIN
+                invoice
+        ON
+                invoice.id  = invoice_detail.invoice_id
+        inner JOIN
+                business
+        ON
+                invoice.business_id  = business.id
+        inner JOIN
+                product
+        ON
+                invoice_detail.product_id  = product.id
+        cross JOIN
+                company
+        WHERE
+                invoice.id = '5'
+        GROUP By
+                invoice.invoice_full_no
+        ) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1055 'pos.invoice.invoice_date' isn't in GROUP BY (SQL: \tselect
+        invoice.invoice_full_no,
+        invoice.invoice_date,
+        business.name as business_name,
+        invoice.invoice_amount,
+        invoice.discount_amount,
+        invoice.balance_amount,
+        invoice.gst_amount,
+        product.hsnorsac,
+        product.barcode,
+        product.name as product_name,
+        invoice_detail.qty,
+        invoice_detail.sub_total,
+        invoice_detail.total,
+        SUM(invoice_detail.qty) as total_count,
+        business.NAME as businessname,
+        company.name as company_name,
+        company.address as company_address,
+        company.website as company_website,
+        company.gst_no as company_gst_no,
+        company.logo as logo
+        FROM
+                invoice_detail
+        inner JOIN
+                invoice
+        ON
+                invoice.id  = invoice_detail.invoice_id
+        inner JOIN
+                business
+        ON
+                invoice.business_id  = business.id
+        inner JOIN
+                product
+        ON
+                invoice_detail.product_id  = product.id
+        cross JOIN
+                company
+        WHERE
+                invoice.id = '5'
+        GROUP By
+                invoice.invoice_full_no
+        ) at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:664, Doctrine\\DBAL\\Driver\\PDOException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1055 'pos.invoice.invoice_date' isn't in GROUP BY at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOConnection.php:63, PDOException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1055 'pos.invoice.invoice_date' isn't in GROUP BY at E:\\Backup\\04-May-2019\\POSAPI\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOConnection.php:61)
+[stacktrace]
+#0 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(624): Illuminate\\Database\\Connection->runQueryCallback(Object(Illuminate\\Database\\Query\\Expression), Array, Object(Closure))
+#1 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(333): Illuminate\\Database\\Connection->run(Object(Illuminate\\Database\\Query\\Expression), Array, Object(Closure))
+#2 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\DatabaseManager.php(347): Illuminate\\Database\\Connection->select(Object(Illuminate\\Database\\Query\\Expression))
+#3 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(237): Illuminate\\Database\\DatabaseManager->__call('select', Array)
+#4 E:\\Backup\\04-May-2019\\POSAPI\\app\\Http\\Controllers\\ApiController\\InvoiceController.php(101): Illuminate\\Support\\Facades\\Facade::__callStatic('select', Array)
+#5 [internal function]: App\\Http\\Controllers\\ApiController\\InvoiceController->InvoicePrint('5')
+#6 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#7 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('InvoicePrint', Array)
+#8 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\ApiController\\InvoiceController), 'InvoicePrint')
+#9 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(176): Illuminate\\Routing\\Route->runController()
+#10 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(680): Illuminate\\Routing\\Route->run()
+#11 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#12 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#13 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(682): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#14 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(657): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#15 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(623): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#16 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(612): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#17 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#18 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#19 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\spatie\\laravel-cors\\src\\Cors.php(28): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#20 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Spatie\\Cors\\Cors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#23 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#26 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#29 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#32 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#35 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#38 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#39 E:\\Backup\\04-May-2019\\POSAPI\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#40 E:\\Backup\\04-May-2019\\POSAPI\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#41 E:\\Backup\\04-May-2019\\POSAPI\\server.php(21): require_once('E:\\\\Backup\\\\04-Ma...')
+#42 {main}
+"} 

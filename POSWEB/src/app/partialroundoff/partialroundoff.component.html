@@ -1,0 +1,18 @@
+<p-header>
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <input type="text" [(ngModel)]="_Roundoffamount" pInputText placeholder="Amount" decimalpoint
+          [style]="{'width':'100%'}">
+        <span style="color: red"
+          *ngIf="(_RoundOffForm.controls['_Roundoffamount'].dirty || _RoundOffForm.controls['_Roundoffamount'].touched || _RoundOffForm.controls['_Roundoffamount'].untouched || _RoundOffForm.controls['_Roundoffamount'].valueChanges) && _RoundOffForm.controls['_Roundoffamount'].invalid">
+          RoundOff Amount is required
+        </span>
+      </div>
+    </div>
+  </div>
+</p-header>
+<hr>
+<p-footer class="pull-right">
+  <button pButton type="button" (click)="Save()" label="Save"></button>
+</p-footer>

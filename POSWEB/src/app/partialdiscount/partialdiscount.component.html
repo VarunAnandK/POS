@@ -1,0 +1,40 @@
+<p-header>
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+            <label style="font-weight: bold"> Type </label>
+            <p-dropdown [options]="_typedropdown" [style]="{'width':'100%'}" [(ngModel)]="_discounttype" [filter]="true"
+                name="type" (ngModelChange)="DiscountType($event)"></p-dropdown>
+        </div>
+    </div>
+    <!-- <div class="ui-g ui-fluid" [hidden]="_IsTextBox" >
+        <div class="ui-g-12 ui-md-12">
+            <p-card>
+                {{_label_lowestproductamount}}
+            </p-card>
+        </div>
+    </div> -->
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+                <input type="text" min="0" max="100" [hidden]="_IsTextBox" [(ngModel)]="_percentage" pInputText
+                    placeholder="Amount" decimalpoint [style]="{'width':'100%'}">
+                <span style="color: red"
+                    *ngIf="(_DiscountForm.controls['_percentage'].dirty || _DiscountForm.controls['_percentage'].touched || _DiscountForm.controls['_percentage'].untouched || _DiscountForm.controls['_percentage'].valueChanges) && _DiscountForm.controls['_percentage'].invalid">
+                    Percentage is required
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+            <!-- <h6>Percentage: {{val2}}</h6> -->
+            <input type="text" [hidden]="_IsSlider" pInputText [(ngModel)]="_sliderpercentage" min="0" max="100" style="width:100%" placeholder="Percentage"/>
+            <p-slider [(ngModel)]="_sliderpercentage" [hidden]="_IsSlider"
+                [style]="{'width':'100%'}" ></p-slider>
+        </div>
+    </div>
+</p-header>
+<hr>
+<p-footer class="pull-right">
+    <button pButton type="button" (click)="Save()" label="Save"></button>
+</p-footer>

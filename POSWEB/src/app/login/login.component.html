@@ -1,0 +1,36 @@
+<div class="login-box">
+  <div class="login-logo">
+    <img src="assets/logo.jpg" width="300px" alt="logo">
+  </div>
+  <hr />
+  <form>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12">
+        <label style="font-weight: bold"> User Name </label>
+        <input pInputText class="form-control" name="name" [(ngModel)]="_InsertUser.user_name" type="text"
+          placeholder="User Name" />
+        <!-- <span style="color: red"
+                *ngIf="(_CountryForm.controls['name'].dirty || _CountryForm.controls['name'].touched || _CountryForm.controls['name'].untouched || _CountryForm.controls['name'].valueChanges) && _CountryForm.controls['name'].invalid">
+                Country is required
+              </span> -->
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12">
+        <label style="font-weight: bold"> Password </label>
+        <input pInputText class="form-control" name="name" [(ngModel)]="_InsertUser.password" type="password"
+          placeholder="password" />
+        <!-- <span style="color: red"
+                  *ngIf="(_CountryForm.controls['name'].dirty || _CountryForm.controls['name'].touched || _CountryForm.controls['name'].untouched || _CountryForm.controls['name'].valueChanges) && _CountryForm.controls['name'].invalid">
+                  Country is required
+                </span> -->
+      </div>
+    </div>
+    <div class="ui-grid-col-12 text-right">
+      <a href="#">Forgot Password?</a>
+    </div>
+    <hr />
+    <button class="btn btn-primary" id="form_submit" type="submit" (click)="ValidateLogin()">Submit</button>
+  </form>
+</div>
+

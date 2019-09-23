@@ -1,0 +1,250 @@
+<p-panel header="POS TERMINAL - [#OrderNo{{this._OrderNo}}]" *ngIf="_IsSalesOrNot">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-6">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-5">
+          <p-dropdown [options]="_businessdropdown" [disabled]="this._FooterOrderdata[0].PaidAmount > 0"
+            [style]="{'width':'100%'}" [(ngModel)]="_business_id" [filter]="true"
+            (onChange)="UpdateOrderBusiness($event.value)" name="_business_id"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-md-2">
+          <button style="margin-right: 10px" pButton type="button" icon="fa fa-user"
+            (click)="PartialAddCustomer()"></button>
+          <button pButton type="button" icon="fa fa-pencil" (click)="PartialEditCustomer()"></button>
+        </div>
+        <div class="ui-g-12 ui-md-5">
+          <input pInputText [(ngModel)]="txtbarcode" [disabled]="this._FooterOrderdata[0].PaidAmount > 0"
+            class="form-control" name="name" type="text" placeholder="Scan Barcode" (keyup)="ProductByBarcode($event)"
+            [style]="{'width':'100%'}" />
+        </div>
+      </div>
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+          <hr>
+          <p-table [value]="_OrderList" dataKey="id" editMode="row" [scrollable]="true" scrollHeight="250px"
+            [style]="{'width': '100%'}">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 30%">Product Name</th>
+                <th style="width: 20%">HSN / SAC</th>
+                <th style="width: 15%" *ngIf="this._FooterOrderdata[0].GST > 0">GST (%)</th>
+                <th style="width: 10%">Qty</th>
+                <th style="width: 17.5%">Rate</th>
+                <th style="width: 17.5%">Amount</th>
+                <th style="width:10%"></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+              <tr [pEditableRow]="rowData">
+                <td style="width: 30%">
+                  {{rowData.product.name}}
+                </td>
+                <td style="width: 20%">
+                  {{rowData.product.hsnorsac}}
+                </td>
+                <td style="width: 15%" *ngIf="this._FooterOrderdata[0].GST > 0">
+                  {{rowData.gst.name}}
+                </td>
+                <td style="width: 10%">
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="rowData.qty" required numberonly
+                        (change)="QtyChange($event,rowData,ri)">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{rowData.qty | number}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td style="width: 17.5%">
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="rowData.price" required decimalpoint
+                        (change)="AmountChange($event,rowData,ri)">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      <span class="pull-right">{{rowData.price | currency:'INR':'symbol-narrow'}}</span>
+
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td style="width: 17.5%">
+                  <span class="pull-right">{{(rowData.price * rowData.qty) | currency:'INR':'symbol-narrow'}}</span>
+                </td>
+                <td style="text-align:center" style="width: 10%">
+                  <button *ngIf="!editing" style="margin-right: .5em"
+                    [disabled]="this._FooterOrderdata[0].PaidAmount > 0" pButton type="button" pInitEditableRow
+                    icon="pi pi-pencil" class="ui-button-info" (click)="OrderonRowEditInit(rowData)"></button>
+                  <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-trash"
+                    class="ui-button-danger" (click)="DeleteOrder(rowData.id)"
+                    [disabled]="this._FooterOrderdata[0].PaidAmount > 0"></button>
+                  <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check"
+                    class="ui-button-success" style="margin-right: .5em" (click)="OrderonRowEditSave(rowData)"></button>
+                  <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times"
+                    class="ui-button-danger" (click)="OrderonRowEditCancel(rowData, ri)"></button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+          <hr>
+          <p-table [rows]="1" [value]="_FooterOrderdata">
+            <ng-template pTemplate="header" ngFor #link [ngForOf]="_FooterOrderdata">
+              <tr>
+                <th style="width: 11.80%">
+                  Items
+                </th>
+                <th style="width: 14.70%">
+                  Total
+                </th>
+                <th style="width: 14.70%">
+                  Discount (-)
+                </th>
+                <th style="width: 14.70%" *ngIf="this._FooterOrderdata[0].GST > 0">
+                  <a (click)="Partialgstlist()"> GST (+) </a>
+                </th>
+                <th style="width: 14.70%">
+                  <a (click)="Partialroundoff()"> Round Off </a>
+                </th>
+                <th style="width: 14.70%">
+                  Total payable
+                </th>
+                <th style="width: 14.70%">
+                  Paid
+                </th>
+                <th style="width: 14.70%">
+                  Balance
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+              <tr [pSelectableRow]="rowData">
+                <td>
+                  {{rowData.Items | number}}
+                </td>
+                <td>
+                  <span class="pull-right">{{rowData.Total | currency:'INR':'symbol-narrow'}}</span>
+                </td>
+                <td>
+                  <span class="pull-right">{{rowData.Discount | currency:'INR':'symbol-narrow'}}</span>
+                </td>
+                <td *ngIf="this._FooterOrderdata[0].GST > 0">
+                  <span class="pull-right">{{rowData.GST | currency:'INR':'symbol-narrow'}}</span>
+                </td>
+                <td>
+                  <span class="pull-right">{{rowData.RoundOffAmount | currency:'INR':'symbol-narrow'}}</span>
+                </td>
+                <td>
+                  <span class="pull-right">{{rowData.TotalPayable | currency:'INR':'symbol-narrow'}}</span>
+                </td>
+                <td>
+                  <span class="pull-right">{{rowData.PaidAmount | currency:'INR':'symbol-narrow'}}</span>
+                </td>
+                <td>
+                  <span class="pull-right">{{rowData.BalanceAmount | currency:'INR':'symbol-narrow'}}</span>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-3">
+              <button pButton type="button"
+                [disabled]="!_IsOrderHave || this._FooterOrderdata[0].PaidAmount > 0 || this._businessgroupdiscountpercentage > 0"
+                label="Add Discount" (click)="AddDiscount()" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <button pButton type="button" [disabled]="!_IsOrderHave" label="Hold" class="ui-button-success"
+                (click)="HoldOrder()"></button>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <button pButton type="button" [disabled]="!_IsOrderHave || this._FooterOrderdata[0].PaidAmount > 0"
+                label="Cancel" class="ui-button-success" (click)="DeleteAllOrder()"></button>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <button pButton type="button" (click)="OpenHoldList()" label="Pending Orders"
+                class="ui-button-success"></button>
+            </div>
+          </div>
+          <div class="ui-g ui-fluid">
+            <!-- <div class="ui-g-12 ui-md-3">
+              <button pButton type="button" [disabled]="!_IsOrderHave" label="Card" class="ui-button-info"></button>
+            </div> -->
+            <div class="ui-g-12 ui-md-3">
+              <button pButton type="button" label="Auto RoundOff"
+                [disabled]="!_IsOrderHave || this._FooterOrderdata[0].RoundOffAmount != 0 || this._FooterOrderdata[0].PaidAmount > 0"
+                (click)="AutoRoundOff()" class="ui-button-info"></button>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <button pButton type="button" [disabled]="!_IsOrderHave" label="Payment" (click)="PartialCash()"
+                class="ui-button-info"></button>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <button pButton type="button" label="Invoices" (click)="InvoiceList()" class="ui-button-info"></button>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <button pButton type="button" label="Day Close" (click)="PartialDayClose()"
+                class="ui-button-info"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+          <p-dataView #dv [value]="_ProductList" layout="grid" [loading]="_productloader" [paginator]="true" [rows]="8"
+            paginatorPosition="both" [lazy]="true" (onLazyLoad)="loadProductLazy($event)" [paginator]="true"
+            [totalRecords]="_ProducttotalRecords">
+            <p-header>
+              <div class="row">
+                <div class="col-sm-11">
+                  <input type="search" style="display: inline-block;" pInputText
+                    placeholder="Search by ProductName/HSNorSAC/Rate/Category" (input)="SearchProductLazy($event,dv)">
+                </div>
+                <div class="col-sm-1">
+                  <button pButton style="display: inline-block;" type="button" icon="fa fa-cart-plus"
+                    (click)="PartialAddProduct()"></button>
+                </div>
+              </div>
+            </p-header>
+            <ng-template let-product pTemplate="gridItem">
+              <div style="padding:.5em" class="ui-g-12 ui-md-3">
+                <p-panel [header]="product.name" [style]="{'text-align':'right'}" (click)="OrderAddProduct(product)">
+                  <div><span style="font-weight: bold">Price : </span>
+                    {{product.selling_price | currency:'INR':'symbol-narrow'}}</div>
+                  <div><span style="font-weight: bold">Barcode : </span> {{product.barcode}}</div>
+                  <div><span style="font-weight: bold">HSN : </span> {{product.hsnorsac}}</div>
+                  <div> <span style="font-weight: bold">GST : </span>{{product.gst.name}}</div>
+                </p-panel>
+                <div style="padding:.2">
+                  <button pButton type="button"
+                    style="width: 70px; background-color: #f4f4f4;color: black;border-color:gray " label="Select"
+                    (click)="OrderAddProduct(product)"></button>
+                    <button pButton type="button"
+                    style="width: 65px; background-color: #f4f4f4;color: black;border-color:gray " label="Edit"
+                    (click)="PartialEditProduct(product)"></button>
+                </div>
+              </div>
+            </ng-template>
+          </p-dataView>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-panel>
+<p-panel header="POS TERMINAL NEW" *ngIf="!_IsSalesOrNot">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-6">
+      <label style="font-weight: bold"> Opening Cash </label>
+      <input pInputText [(ngModel)]="_SalesData.opening_cash" name="opening_cash" type="text"
+        placeholder="Opening Cash" />
+    </div>
+    <div class="ui-g-12 ui-md-6">
+      <button pButton type="button" *ngIf="_SalesData.id == 0" style="width: 100px;margin-right: 10px" label="Save" (click)="CreateOpeningCash()"
+        class="ui-button-success pull-left"></button>
+    </div>
+  </div>
+</p-panel>

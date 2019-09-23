@@ -1,0 +1,80 @@
+<p-table #dt [rows]="5" [value]="_InvoiceList" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th>
+              Full No
+          </th>
+          <th>
+              Date
+          </th>
+          <th>
+              Order No
+          </th>
+          <th>
+              Business Name
+          </th>
+          <th>
+              Sub Total
+          </th>
+          <th>
+              GST Amount
+          </th>
+          <th>
+              Discount
+          </th>
+          <th>
+              Round Off
+          </th>
+          <th>
+              Invoice Amount
+          </th>
+          <th>
+              Balance Amount
+          </th>
+          <th style="width: 80px;">
+                Print
+          </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+          <td>
+              {{rowData.invoice_full_no }}
+          </td>
+          <td>
+              <span class="pull-right">{{rowData.invoie_date}}</span>
+          </td>
+          <td>
+              <span class="pull-center">{{rowData.order_no}}</span>
+          </td>
+          <td>
+              <span class="pull-center">{{rowData.busines.name}}</span>
+          </td>
+          <td>
+              <span class="pull-right">{{rowData.sub_total | currency:'INR':'symbol-narrow'}}</span>
+          </td>
+          <td>
+              <span class="pull-center">{{rowData.gst_amount | currency:'INR':'symbol-narrow'}}</span>
+          </td>
+          <td>
+              <span class="pull-right">{{rowData.discount_amount | currency:'INR':'symbol-narrow'}}</span>
+          </td>
+          <td>
+              <span class="pull-center">{{rowData.round_off | currency:'INR':'symbol-narrow'}}</span>
+          </td>
+          <td>
+              <span class="pull-right">{{rowData.invoice_amount | currency:'INR':'symbol-narrow'}}</span>
+          </td>
+          <td>
+              <span class="pull-center">{{rowData.balance_amount | currency:'INR':'symbol-narrow'}}</span>
+          </td>
+          <td>
+              <span class="pull-right">{{rowData.gst_amount | currency:'INR':'symbol-narrow'}}</span>
+          </td>
+          <td>
+              <button pButton type="button" icon="pi pi-print" class="ui-button-info"
+                (click)="Edit(rowData['id'])"></button>
+          </td>
+      </tr>
+  </ng-template>
+</p-table>

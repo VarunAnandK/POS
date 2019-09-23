@@ -1,0 +1,90 @@
+<p-panel header="Sales Register Detail List">
+  <button
+    pButton
+    type="button"
+    (click)="Print()"
+    style="width:100px;margin-right: 10px"
+    label="Print"
+    class="ui-button-icon-primary"
+  ></button>
+  <button
+    pButton
+    type="button"
+    (click)="Back()"
+    style="width:100px;margin-right: 10px;float: right;"
+    label="Back"
+    class="ui-button-icon-primary"
+  ></button>
+  <p-table
+    #dt
+    [rows]="10"
+    [value]="_SalesRegisterDetailList"
+    [paginator]="true"
+    [rows]="10"
+    [globalFilterFields]="[
+      'invoice_date',
+      'invoice_no',
+      'business_name',
+      'product_name',
+      'item_qty',
+      'product_price',
+      'product_amount'
+    ]"
+  >
+    <ng-template pTemplate="caption">
+      <div style="text-align: right">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input
+          type="text"
+          pInputText
+          size="50"
+          placeholder="Global Filter"
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          style="width:auto;height: 30px;"
+        />
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>
+          Invoice Date
+        </th>
+        <th>
+          Invoice No
+        </th>
+        <th>
+          Business Name
+        </th>
+        <th>
+          <span class="pull-right">Amount</span>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td>
+          {{ rowData.invoice_date }}
+        </td>
+        <td>
+          <span class="pull-left">{{ rowData.invoice_no }}</span>
+        </td>
+        <td>
+          <span class="pull-center">{{ rowData.business_name }}</span>
+        </td>
+        <td>
+          <span class="pull-right">{{
+            rowData.invoice_amount | currency: "INR":"symbol-narrow"
+          }}</span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <tr>
+        <td colspan="3" style="text-align: right">Total</td>
+        <td style="text-align: right">
+          {{ rtotal | currency: "INR":"symbol-narrow" }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>

@@ -1,0 +1,36 @@
+import { BaseModel } from '../Model/Base-model';
+import { product_category } from './product_category';
+import { gst } from './gst';
+import { sales } from './sales';
+import { product } from './product';
+import { business } from './business';
+export class order extends BaseModel {
+    order_no: number;
+    order_date: string;
+    sales_id: number;
+    product_id: number;
+    product_category_id: number;
+    product_sub_category_id: number = 0;
+    qty: number = 0;
+    price: number = 0;
+    gst_id: number;
+    discount_amount: number = 0;
+    discount_percentage: number = 0;
+    gst_amount: number = 0;
+    gst_percentage: number = 0;
+    cgst_amount: number = 0;
+    cgst_percentage: number = 0;
+    sgst_amount: number = 0;
+    sgst_percentage: number = 0;
+    igst_amount: number = 0;
+    igst_percentage: number = 0;
+    round_off: number = 0;
+    sub_total : number = 0;
+    business_id: number;
+    sales: sales;
+    product: product;
+    product_category: product_category;
+    sub_product_category: product_category;
+    gst: gst;
+    business: business;
+}

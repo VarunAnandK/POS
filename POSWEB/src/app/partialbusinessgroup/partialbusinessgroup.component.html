@@ -1,0 +1,37 @@
+<p-header>
+  <form [formGroup]="_BusinessGroupForm">
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-12">
+              <label> Discount Group </label>
+              <input pInputText formControlName="Name" class="form-control" [(ngModel)]="_BusinessGroupData.name"
+                  name="Name" type="text" placeholder="Name" />
+              <span style="color: red"
+                  *ngIf="(_BusinessGroupForm.controls['Name'].dirty || _BusinessGroupForm.controls['Name'].touched || _BusinessGroupForm.controls['Name'].untouched || _BusinessGroupForm.controls['Name'].valueChanges) && _BusinessGroupForm.controls['Name'].invalid">
+                  Discount Group is required
+              </span>
+          </div>
+      </div>
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-12">
+              <label> Percentage (%) </label>
+              <input pInputText formControlName="Percentage" class="form-control" [(ngModel)]="_BusinessGroupData.percentage"
+                  name="Percentage" type="text" placeholder="Percentage" (keypress)="numberOnly($event)"/>
+              <span style="color: red"
+                  *ngIf="(_BusinessGroupForm.controls['Percentage'].dirty || _BusinessGroupForm.controls['Percentage'].touched || _BusinessGroupForm.controls['Percentage'].untouched || _BusinessGroupForm.controls['Percentage'].valueChanges) && _BusinessGroupForm.controls['Percentage'].invalid">
+                  Percentage (%) is required
+              </span>
+          </div>
+      </div>
+  </form>
+</p-header>
+<hr>
+<p-footer class="pull-right">
+  <button pButton type="button" *ngIf="_BusinessGroupData.id == 0" [disabled]="_BusinessGroupForm.invalid"
+      style="width: 100px;margin-right: 10px" label="Save" (click)="CreateOrUpdate()"
+      class="ui-button-success"></button>
+  <button pButton type="button" *ngIf="_BusinessGroupData.id > 0" [disabled]="_BusinessGroupForm.invalid"
+      style="width: 100px;margin-right: 10px" label="Update" (click)="CreateOrUpdate()"
+      class="ui-button-success"></button>
+  <button pButton type="button" style="width: 100px;margin-right: 10px" *ngIf="_BusinessGroupData.id > 0" label="Delete"
+      (click)="Delete()" class="ui-button-danger"></button>
+</p-footer>

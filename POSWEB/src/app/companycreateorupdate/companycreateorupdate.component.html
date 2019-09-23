@@ -1,0 +1,381 @@
+<p-tabView>
+  <p-tabPanel header="Company Info" leftIcon="pi pi-calendar">
+    <p-panel header="Company {{ _CompanyData.name }}">
+      <button
+        pButton
+        type="button"
+        *ngIf="_CompanyData.id == 0"
+        [disabled]="_CompanyForm.invalid"
+        (click)="InsertOrUpdate()"
+        style="width: 100px;"
+        label="Save"
+        class="ui-button-icon-primary"
+      ></button>
+      <button
+        pButton
+        type="button"
+        *ngIf="_CompanyData.id > 0"
+        [disabled]="_CompanyForm.invalid"
+        (click)="InsertOrUpdate()"
+        style="width: 100px;"
+        label="Update"
+        class="ui-button-icon-primary"
+      ></button>
+      <hr />
+      <form [formGroup]="_CompanyForm">
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-12">
+            <label> Company </label>
+            <input
+              pInputText
+              formControlName="name"
+              style="width:100%"
+              [(ngModel)]="_CompanyData.name"
+              name="name"
+              type="text"
+              placeholder="Company"
+            />
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['name'].dirty ||
+                  _CompanyForm.controls['name'].touched ||
+                  _CompanyForm.controls['name'].untouched ||
+                  _CompanyForm.controls['name'].valueChanges) &&
+                _CompanyForm.controls['name'].invalid
+              "
+            >
+              Company is required
+            </span>
+          </div>
+        </div>
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-4">
+            <label> Country </label>
+            <p-dropdown
+              [options]="_countrydropdown"
+              [style]="{ width: '100%' }"
+              [(ngModel)]="_CompanyData.country_id"
+              [filter]="true"
+              name="country_id"
+              formControlName="country_id"
+              (onChange)="GetState($event.value)"
+            >
+            </p-dropdown>
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['country_id'].dirty ||
+                  _CompanyForm.controls['country_id'].touched ||
+                  _CompanyForm.controls['country_id'].untouched ||
+                  _CompanyForm.controls['country_id'].valueChanges) &&
+                _CompanyForm.controls['country_id'].invalid
+              "
+            >
+              Country is required
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-4">
+            <label> State </label>
+            <p-dropdown
+              [options]="_statedropdown"
+              [style]="{ width: '100%' }"
+              [(ngModel)]="_CompanyData.state_id"
+              [filter]="true"
+              name="state_id"
+              formControlName="state_id"
+              (onChange)="GetCity($event.value)"
+            ></p-dropdown>
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['state_id'].dirty ||
+                  _CompanyForm.controls['state_id'].touched ||
+                  _CompanyForm.controls['state_id'].untouched ||
+                  _CompanyForm.controls['state_id'].valueChanges) &&
+                _CompanyForm.controls['state_id'].invalid
+              "
+            >
+              State is required
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-4">
+            <label> City </label>
+            <p-dropdown
+              [options]="_citydropdown"
+              [style]="{ width: '100%' }"
+              [(ngModel)]="_CompanyData.city_id"
+              [filter]="true"
+              name="city_id"
+              formControlName="city_id"
+            ></p-dropdown>
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['city_id'].dirty ||
+                  _CompanyForm.controls['city_id'].touched ||
+                  _CompanyForm.controls['city_id'].untouched ||
+                  _CompanyForm.controls['city_id'].valueChanges) &&
+                _CompanyForm.controls['city_id'].invalid
+              "
+            >
+              City is required
+            </span>
+          </div>
+        </div>
+        <div class="ui-g ui-fluid">
+          <!-- <div class="ui-g-12 ui-md-6">
+            <label> Address </label>
+            <input pInputText class="form-control" [(ngModel)]="_CompanyData.address" name="address" type="text"
+              placeholder="Address" formControlName="address" />
+            <span style="color: red"
+              *ngIf="(_CompanyForm.controls['address'].dirty || _CompanyForm.controls['address'].touched || _CompanyForm.controls['address'].untouched || _CompanyForm.controls['address'].valueChanges) && _CompanyForm.controls['address'].invalid">
+              Address is required
+            </span>
+          </div> -->
+          <div class="ui-g-12 ui-md-6">
+            <label> Address </label>
+            <textarea
+              style="width: 100%"
+              pInputTextarea
+              placeholder="Address"
+              [(ngModel)]="_CompanyData.address"
+              type="text"
+              name="address"
+              [rows]="3"
+              [cols]="55"
+              formControlName="address"
+            ></textarea>
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['address'].dirty ||
+                  _CompanyForm.controls['address'].touched ||
+                  _CompanyForm.controls['address'].untouched ||
+                  _CompanyForm.controls['address'].valueChanges) &&
+                _CompanyForm.controls['address'].invalid
+              "
+            >
+              Address is required
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <label> Postal Code </label>
+            <input
+              pInputText
+              class="form-control"
+              [(ngModel)]="_CompanyData.postal_code"
+              name="postal_code"
+              type="text"
+              placeholder="Postal Code"
+              formControlName="postal_code"
+            />
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['postal_code'].dirty ||
+                  _CompanyForm.controls['postal_code'].touched ||
+                  _CompanyForm.controls['postal_code'].untouched ||
+                  _CompanyForm.controls['postal_code'].valueChanges) &&
+                _CompanyForm.controls['postal_code'].invalid
+              "
+            >
+              Postal Code is required
+            </span>
+          </div>
+        </div>
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-6">
+            <label> Email </label>
+            <input
+              pInputText
+              class="form-control"
+              [(ngModel)]="_CompanyData.email"
+              name="email"
+              type="text"
+              placeholder="Email"
+              formControlName="email"
+            />
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['email'].dirty ||
+                  _CompanyForm.controls['email'].touched ||
+                  _CompanyForm.controls['email'].untouched ||
+                  _CompanyForm.controls['email'].valueChanges) &&
+                _CompanyForm.controls['email'].invalid
+              "
+            >
+              Email is required
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <label> Website </label>
+            <input
+              pInputText
+              class="form-control"
+              [(ngModel)]="_CompanyData.website"
+              name="website"
+              type="text"
+              placeholder="Website"
+              formControlName="website"
+            />
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['website'].dirty ||
+                  _CompanyForm.controls['website'].touched ||
+                  _CompanyForm.controls['website'].untouched ||
+                  _CompanyForm.controls['website'].valueChanges) &&
+                _CompanyForm.controls['website'].invalid
+              "
+            >
+              Website is required
+            </span>
+          </div>
+        </div>
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-6">
+            <label> Phone No </label>
+            <input
+              pInputText
+              class="form-control"
+              [(ngModel)]="_CompanyData.phone_no"
+              name="phone_no"
+              type="text"
+              placeholder="Phone No"
+              formControlName="phone_no"
+            />
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['phone_no'].dirty ||
+                  _CompanyForm.controls['phone_no'].touched ||
+                  _CompanyForm.controls['phone_no'].untouched ||
+                  _CompanyForm.controls['phone_no'].valueChanges) &&
+                _CompanyForm.controls['phone_no'].invalid
+              "
+            >
+              Phone No is required
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <label> GST No </label>
+            <input
+              pInputText
+              class="form-control"
+              [(ngModel)]="_CompanyData.gst_no"
+              name="gst_no"
+              type="text"
+              placeholder="GST No"
+              formControlName="gst_no"
+            />
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['gst_no'].dirty ||
+                  _CompanyForm.controls['gst_no'].touched ||
+                  _CompanyForm.controls['gst_no'].untouched ||
+                  _CompanyForm.controls['gst_no'].valueChanges) &&
+                _CompanyForm.controls['gst_no'].invalid
+              "
+            >
+              GST No is required
+            </span>
+          </div>
+        </div>
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-6">
+            <label> Is GST </label>
+            <p-checkbox
+              [(ngModel)]="_CompanyData.is_gst_enable"
+              name="is_gst_enable"
+              formControlName="is_gst_enable"
+              binary="false"
+            ></p-checkbox>
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['is_gst_enable'].dirty ||
+                  _CompanyForm.controls['is_gst_enable'].touched ||
+                  _CompanyForm.controls['is_gst_enable'].untouched ||
+                  _CompanyForm.controls['is_gst_enable'].valueChanges) &&
+                _CompanyForm.controls['is_gst_enable'].invalid
+              "
+            >
+              Is GST Stock is required
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <label> Is Credits </label>
+            <p-checkbox
+              [(ngModel)]="_CompanyData.is_credits_enable"
+              name="is_credits_enable"
+              formControlName="is_credits_enable"
+              binary="false"
+            ></p-checkbox>
+            <span
+              style="color: red"
+              *ngIf="
+                (_CompanyForm.controls['is_credits_enable'].dirty ||
+                  _CompanyForm.controls['is_credits_enable'].touched ||
+                  _CompanyForm.controls['is_credits_enable'].untouched ||
+                  _CompanyForm.controls['is_credits_enable'].valueChanges) &&
+                _CompanyForm.controls['is_credits_enable'].invalid
+              "
+            >
+              Is GST Stock is required
+            </span>
+          </div>
+        </div>
+      </form>
+    </p-panel>
+  </p-tabPanel>
+  <p-tabPanel header="Image" leftIcon="pi pi-inbox">
+    <p-panel header="Company {{ _CompanyData.name }}">
+      <button
+        pButton
+        type="button"
+        *ngIf="_CompanyData.id == 0"
+        [disabled]="_CompanyForm.invalid"
+        (click)="InsertOrUpdate()"
+        style="width: 100px;"
+        label="Save"
+        class="ui-button-icon-primary"
+      ></button>
+      <button
+        pButton
+        type="button"
+        *ngIf="_CompanyData.id > 0"
+        [disabled]="_CompanyForm.invalid"
+        (click)="InsertOrUpdate()"
+        style="width: 100px;"
+        label="Update"
+        class="ui-button-icon-primary"
+      ></button>
+      <hr />
+      <form [formGroup]="_CompanyForm">
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-4">
+            <p-fileUpload
+              name="myfile[]"
+              auto="true"
+              customUpload="true"
+              (uploadHandler)="Imgincomingfile($event)"
+            >
+            </p-fileUpload>
+          </div>
+          <div class="ui-g-12 ui-md-8">
+            <img
+              id="ImgPreview"
+              width="300"
+              alt=""
+              height="300"
+              src="{{ _CompanyData.logo }}"
+            />
+          </div>
+        </div>
+      </form>
+    </p-panel>
+  </p-tabPanel>
+</p-tabView>

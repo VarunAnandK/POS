@@ -1,0 +1,123 @@
+<p-header>
+  <form [formGroup]="_ProductForm">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-6">
+        <label> Category </label>
+        <p-dropdown [options]="_productcategorydropdown" [style]="{'width':'100%'}"
+          [(ngModel)]="_ProductData.product_category_id" [filter]="true" name="product_category_id"
+          formControlName="product_category_id" (onChange)="GetSubProductCategory($event.value)"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['product_category_id'].dirty || _ProductForm.controls['product_category_id'].touched || _ProductForm.controls['product_category_id'].untouched || _ProductForm.controls['product_category_id'].valueChanges) && _ProductForm.controls['product_category_id'].invalid">
+          Category is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <label> Sub Category </label>
+        <p-dropdown [options]="_subproductcategorydropdown" [style]="{'width':'100%'}"
+          [(ngModel)]="_ProductData.product_sub_category_id" [filter]="true" name="product_sub_category_id"
+          formControlName="product_sub_category_id" placeholder="----- N/A -----"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['product_sub_category_id'].dirty || _ProductForm.controls['product_sub_category_id'].touched || _ProductForm.controls['product_sub_category_id'].untouched || _ProductForm.controls['product_sub_category_id'].valueChanges) && _ProductForm.controls['product_sub_category_id'].invalid">
+          Sub Category is required
+        </span>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-6">
+        <label> Product </label>
+        <input pInputText formControlName="Name" [(ngModel)]="_ProductData.name" name="Name" type="text"
+          placeholder="Product" />
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['Name'].dirty || _ProductForm.controls['Name'].touched || _ProductForm.controls['Name'].untouched || _ProductForm.controls['Name'].valueChanges) && _ProductForm.controls['Name'].invalid">
+          Product is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <label> Unit </label>
+        <p-dropdown [options]="_unitdropdown" [style]="{'width':'100%'}" [(ngModel)]="_ProductData.unit_id"
+          [filter]="true" name="unit_id" formControlName="unit_id"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['unit_id'].dirty || _ProductForm.controls['unit_id'].touched || _ProductForm.controls['unit_id'].untouched || _ProductForm.controls['unit_id'].valueChanges) && _ProductForm.controls['unit_id'].invalid">
+          Unit is required
+        </span>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-4">
+        <label> Barcode</label>
+        <input pInputText formControlName="barcode" [(ngModel)]="_ProductData.barcode" name="barcode" type="text"
+          placeholder="Barcode" />
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['barcode'].dirty || _ProductForm.controls['barcode'].touched || _ProductForm.controls['barcode'].untouched || _ProductForm.controls['barcode'].valueChanges) && _ProductForm.controls['barcode'].invalid">
+          Barcode is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <label> SKU </label>
+        <input pInputText formControlName="sku" [(ngModel)]="_ProductData.sku" name="sku" type="text"
+          placeholder="SKU" />
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['sku'].dirty || _ProductForm.controls['sku'].touched || _ProductForm.controls['sku'].untouched || _ProductForm.controls['sku'].valueChanges) && _ProductForm.controls['sku'].invalid">
+          SKU is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <label> HSN Or SAC </label>
+        <input pInputText formControlName="hsnorsac" [(ngModel)]="_ProductData.hsnorsac" name="hsnorsac" type="text"
+          placeholder="HSN Or SAC" />
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['hsnorsac'].dirty || _ProductForm.controls['hsnorsac'].touched || _ProductForm.controls['hsnorsac'].untouched || _ProductForm.controls['hsnorsac'].valueChanges) && _ProductForm.controls['hsnorsac'].invalid">
+          HSN Or SAC is required
+        </span>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-4">
+        <label> Purchase Price </label>
+        <input pInputText class="form-control" [(ngModel)]="_ProductData.purchase_price" name="purchase_price"
+          type="text" placeholder="Purchase Price" formControlName="purchase_price" decimalpoint />
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['purchase_price'].dirty || _ProductForm.controls['purchase_price'].touched || _ProductForm.controls['purchase_price'].untouched || _ProductForm.controls['purchase_price'].valueChanges) && _ProductForm.controls['purchase_price'].invalid">
+          Purchase Price is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <label> Selling Price </label>
+        <input pInputText class="form-control" [(ngModel)]="_ProductData.selling_price" name="selling_price" type="text"
+          placeholder="Selling Price" formControlName="selling_price" decimalpoint />
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['selling_price'].dirty || _ProductForm.controls['selling_price'].touched || _ProductForm.controls['selling_price'].untouched || _ProductForm.controls['selling_price'].valueChanges) && _ProductForm.controls['selling_price'].invalid">
+          Selling Price is required
+        </span>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <label> GST </label>
+        <p-dropdown [options]="_gstdropdown" [style]="{'width':'100%'}" [(ngModel)]="_ProductData.gst_id"
+          [filter]="true" name="gst_id" formControlName="gst_id"></p-dropdown>
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['gst_id'].dirty || _ProductForm.controls['gst_id'].touched || _ProductForm.controls['gst_id'].untouched || _ProductForm.controls['gst_id'].valueChanges) && _ProductForm.controls['gst_id'].invalid">
+          GST is required
+        </span>
+      </div>
+    </div>
+    <!-- <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-6">
+        <label> Opening Stock </label>
+        <input pInputText class="form-control" [(ngModel)]="_ProductData.opening_stock" name="opening_stock" type="text"
+          placeholder="Opening Stock" formControlName="opening_stock" decimalpoint />
+        <span style="color: red"
+          *ngIf="(_ProductForm.controls['opening_stock'].dirty || _ProductForm.controls['opening_stock'].touched || _ProductForm.controls['opening_stock'].untouched || _ProductForm.controls['opening_stock'].valueChanges) && _ProductForm.controls['opening_stock'].invalid">
+          Opening Stock is required
+        </span>
+      </div>
+    </div> -->
+  </form>
+</p-header>
+<hr>
+<p-footer class="pull-right">
+  <button pButton type="button" *ngIf="_ProductData.id == 0" [disabled]="_ProductForm.invalid"
+    style="width: 100px;margin-right: 10px" label="Save" (click)="CreateOrUpdate()" class="ui-button-success"></button>
+  <button pButton type="button" *ngIf="_ProductData.id > 0" [disabled]="_ProductForm.invalid"
+    style="width: 100px;margin-right: 10px" label="Update" (click)="CreateOrUpdate()"
+    class="ui-button-success"></button>
+</p-footer>

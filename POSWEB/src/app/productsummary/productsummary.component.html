@@ -1,0 +1,134 @@
+<p-panel header="Product Summary List">
+  <p-table
+    #dt
+    [rows]="10"
+    [value]="_ProductSummaryList"
+    [paginator]="true"
+    [rows]="10"
+    [globalFilterFields]="[
+      'product_name',
+      'sold_qty',
+      'avg_price',
+      'actual_amount'
+    ]"
+  >
+    <ng-template pTemplate="caption">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-3">
+          <label>Start Date</label>
+          <p-calendar
+            [(ngModel)]="StartDate"
+            dateFormat="dd-M-yy"
+            [showIcon]="true"
+            [readonlyInput]="true"
+            [monthNavigator]="true"
+            [yearNavigator]="true"
+            yearRange="2000:2100"
+          ></p-calendar>
+        </div>
+        <div class="ui-g-3">
+          <label>End Date</label>
+          <p-calendar
+            [(ngModel)]="EndDate"
+            dateFormat="dd-M-yy"
+            [showIcon]="true"
+            [readonlyInput]="true"
+            [monthNavigator]="true"
+            [yearNavigator]="true"
+            yearRange="2000:2100"
+          ></p-calendar>
+        </div>
+        <div class="ui-g-1">
+          <br />
+          <button
+            pButton
+            type="button"
+            [disabled]="StartDate == null && EndDate == null"
+            style="margin-right: 10px"
+            label="Submit"
+            (click)="Submit()"
+            class="ui-button-icon-primary"
+          ></button>
+        </div>
+        <div class="ui-g-5">
+          <br />
+          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+          <input
+            type="text"
+            pInputText
+            size="50"
+            placeholder="Global Filter"
+            (input)="dt.filterGlobal($event.target.value, 'contains')"
+            style="width:auto;height: 30px;"
+          />
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          Product Name
+        </th>
+        <th style="text-align: center">
+          <span >Qty</span>
+        </th>
+        <th>
+          <span class="pull-right">Avg Price</span>
+        </th>
+        <th>
+          <span class="pull-right">Amount</span>
+        </th>
+        <th style="width: 120px;">
+          Edit
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr [pSelectableRow]="rowData">
+        <td>
+          {{ rowData.product_name }}
+        </td>
+        <td style="text-align: center">
+          <span >{{ rowData.sold_qty }}</span>
+        </td>
+        <td>
+          <span class="pull-right">{{
+            rowData.avg_price | currency: "INR":"symbol-narrow"
+          }}</span>
+        </td>
+        <td>
+          <span class="pull-right">{{
+            rowData.actual_amount | currency: "INR":"symbol-narrow"
+          }}</span>
+        </td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-pencil"
+            class="ui-button-info"
+            (click)="Edit(rowData['product_id'])"
+            style="margin-right: 10px"
+          ></button>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-print"
+            class="ui-button-info"
+            (click)="Print(rowData['product_id'])"
+            style="margin-right: 10px"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <tr>
+        <td colspan="3" style="text-align: right">Total</td>
+        <td style="text-align: right">
+          {{ rtotal | currency: "INR":"symbol-narrow" }}
+        </td>
+        <td></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>

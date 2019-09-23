@@ -1,0 +1,70 @@
+<p-table #dt [rows]="5" [value]="_OrderGSTList" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th>
+                HSN / SAC
+            </th>
+            <th>
+                Taxable Amount
+            </th>
+            <th>
+                CGST (%)
+            </th>
+            <th>
+                CGST Amount
+            </th>
+            <th>
+                SGST (%)
+            </th>
+            <th>
+                SGST Amount
+            </th>
+            <th>
+                IGST (%)
+            </th>
+            <th>
+                IGST Amount
+            </th>
+            <th>
+                GST (%)
+            </th>
+            <th>
+                GST Amount
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            <td>
+                {{rowData.product_hsnorsac }}
+            </td>
+            <td>
+                <span class="pull-right">{{rowData.sub_total | currency:'INR':'symbol-narrow'}}</span>
+            </td>
+            <td>
+                <span class="pull-center">{{rowData.cgst_percentage | number:'0.2'}}</span>
+            </td>
+            <td>
+                <span class="pull-right">{{rowData.cgst_amount | currency:'INR':'symbol-narrow'}}</span>
+            </td>
+            <td>
+                <span class="pull-center">{{rowData.sgst_percentage | number:'0.2'}}</span>
+            </td>
+            <td>
+                <span class="pull-right">{{rowData.sgst_amount | currency:'INR':'symbol-narrow'}}</span>
+            </td>
+            <td>
+                <span class="pull-center">{{rowData.igst_percentage | number:'0.2'}}</span>
+            </td>
+            <td>
+                <span class="pull-right">{{rowData.igst_amount | currency:'INR':'symbol-narrow'}}</span>
+            </td>
+            <td>
+                <span class="pull-center">{{rowData.gst_percentage | number:'0.2'}}</span>
+            </td>
+            <td>
+                <span class="pull-right">{{rowData.gst_amount | currency:'INR':'symbol-narrow'}}</span>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

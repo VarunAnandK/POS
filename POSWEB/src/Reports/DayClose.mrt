@@ -1,0 +1,529 @@
+{
+  "ReportVersion": "2018.3.3.0",
+  "ReportGuid": "8d4a3d3aeeed460abdea613ab1a21018",
+  "ReportName": "Report",
+  "ReportAlias": "Report",
+  "ReportCreated": "/Date(12600000+0530)/",
+  "ReportChanged": "/Date(1559217187857+0530)/",
+  "EngineVersion": "EngineV2",
+  "CalculationMode": "Interpretation",
+  "ReportUnit": "Inches",
+  "Script": "using System;\r\nusing System.Drawing;\r\nusing System.Windows.Forms;\r\nusing System.Data;\r\nusing Stimulsoft.Controls;\r\nusing Stimulsoft.Base.Drawing;\r\nusing Stimulsoft.Report;\r\nusing Stimulsoft.Report.Dialogs;\r\nusing Stimulsoft.Report.Components;\r\n\r\nnamespace Reports\r\n{\r\n    public class Report : Stimulsoft.Report.StiReport\r\n    {\r\n        public Report()        {\r\n            this.InitializeComponent();\r\n        }\r\n\r\n        #region StiReport Designer generated code - do not modify\r\n\t\t#endregion StiReport Designer generated code - do not modify\r\n    }\r\n}\r\n",
+  "Styles": {
+    "0": {
+      "Ident": "StiStyle",
+      "Name": "Hidden",
+      "Border": ";;;;;;;solid:Black",
+      "Brush": "solid:",
+      "TextBrush": "solid:"
+    },
+    "1": {
+      "Ident": "StiStyle",
+      "Name": "HiddenFonts",
+      "Border": "All;;;;;;;solid:Black",
+      "Brush": "solid:",
+      "TextBrush": "solid:"
+    }
+  },
+  "ReferencedAssemblies": {
+    "0": "System.Dll",
+    "1": "System.Drawing.Dll",
+    "2": "System.Windows.Forms.Dll",
+    "3": "System.Data.Dll",
+    "4": "System.Xml.Dll",
+    "5": "Stimulsoft.Controls.Dll",
+    "6": "Stimulsoft.Base.Dll",
+    "7": "Stimulsoft.Report.Dll"
+  },
+  "Dictionary": {
+    "Variables": {
+      "0": {
+        "Value": "0",
+        "Name": "MySum",
+        "Alias": "MySum",
+        "Type": "System.Int32"
+      }
+    },
+    "DataSources": {
+      "0": {
+        "Ident": "StiDataTableSource",
+        "Name": "root",
+        "Alias": "root",
+        "Columns": {
+          "0": {
+            "Name": "Card_sales",
+            "Index": -1,
+            "NameInSource": "Card_sales",
+            "Alias": "Card_sales",
+            "Type": "System.String"
+          },
+          "1": {
+            "Name": "Cash_in_hand",
+            "Index": -1,
+            "NameInSource": "Cash_in_hand",
+            "Alias": "Cash_in_hand",
+            "Type": "System.String"
+          },
+          "2": {
+            "Name": "Cash_sales",
+            "Index": -1,
+            "NameInSource": "Cash_sales",
+            "Alias": "Cash_sales",
+            "Type": "System.String"
+          },
+          "3": {
+            "Name": "Credit_sales",
+            "Index": -1,
+            "NameInSource": "Credit_sales",
+            "Alias": "Credit_sales",
+            "Type": "System.String"
+          },
+          "4": {
+            "Name": "Opening_Cash",
+            "Index": -1,
+            "NameInSource": "Opening_Cash",
+            "Alias": "Opening_Cash",
+            "Type": "System.String"
+          },
+          "5": {
+            "Name": "Total_Sales",
+            "Index": -1,
+            "NameInSource": "Total_Sales",
+            "Alias": "Total_Sales",
+            "Type": "System.String"
+          },
+          "6": {
+            "Name": "name",
+            "Index": -1,
+            "NameInSource": "name",
+            "Alias": "name",
+            "Type": "System.String"
+          }
+        },
+        "NameInSource": "DayClose.root"
+      }
+    },
+    "Databases": {
+      "0": {
+        "Ident": "StiJsonDatabase",
+        "Name": "DayClose",
+        "Alias": "DayClose"
+      }
+    }
+  },
+  "Pages": {
+    "0": {
+      "Ident": "StiPage",
+      "Name": "Page1",
+      "Guid": "73ba829354d647818254503fc667c202",
+      "Interaction": {
+        "Ident": "StiInteraction"
+      },
+      "Border": ";;2;;;;;solid:Black",
+      "Brush": "solid:",
+      "Components": {
+        "0": {
+          "Ident": "StiPageHeaderBand",
+          "Name": "PageHeader1",
+          "ClientRectangle": "0,0.2,3.15,0.5",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text1",
+              "Guid": "13daa7de125a4417b8e5a1663f774ed5",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.2,0,2.8,0.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{root.name}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Arial Unicode MS;10;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "DataColumn"
+            },
+            "1": {
+              "Ident": "StiText",
+              "Name": "Text2",
+              "Guid": "2bbd1eceb2fb4b6cbd6b5a1eccff79b2",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0.2,0.3,2.8,0.2",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "Day Close Sales"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Arial Unicode MS;10;Bold;",
+              "Border": ";;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          }
+        },
+        "1": {
+          "Ident": "StiText",
+          "Name": "Text_7",
+          "Guid": "da544d41548144daaf0295132dae73b6",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "-0.1,1.7,1.8,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "Card Sales :"
+          },
+          "HorAlignment": "Right",
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "Type": "Expression"
+        },
+        "2": {
+          "Ident": "StiText",
+          "Name": "Text_8",
+          "Guid": "874a1a389dbc44ac9172a4de44e8ee05",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "1.7,1.7,1.4,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "{root.Card_sales}"
+          },
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "TextFormat": {
+            "Ident": "StiCurrencyFormatService",
+            "NegativePattern": 12,
+            "GroupSeparator": ",",
+            "UseGroupSeparator": false,
+            "UseLocalSetting": false,
+            "PositivePattern": 2,
+            "Symbol": "₹"
+          },
+          "Type": "DataColumn"
+        },
+        "3": {
+          "Ident": "StiText",
+          "Name": "Text_9",
+          "Guid": "37ccaf08929d48229482b17703f9c087",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "0,2.3,1.7,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "Total Sales :"
+          },
+          "HorAlignment": "Right",
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "Type": "Expression"
+        },
+        "4": {
+          "Ident": "StiText",
+          "Name": "Text_10",
+          "Guid": "e5b715c9d9c741fcab219747213e6e16",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "1.7,2.3,1.4,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "{root.Total_Sales}"
+          },
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "TextFormat": {
+            "Ident": "StiCurrencyFormatService",
+            "NegativePattern": 12,
+            "GroupSeparator": ",",
+            "UseGroupSeparator": false,
+            "UseLocalSetting": false,
+            "PositivePattern": 2,
+            "Symbol": "₹"
+          },
+          "Type": "DataColumn"
+        },
+        "5": {
+          "Ident": "StiText",
+          "Name": "Text_11",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "0,2.7,3.1,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "{Today}"
+          },
+          "HorAlignment": "Center",
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "TextFormat": {
+            "Ident": "StiCustomFormatService",
+            "StringFormat": "dd-MMM-yyyy hh:mm"
+          },
+          "Type": "SystemVariables"
+        },
+        "6": {
+          "Ident": "StiText",
+          "Name": "Text_1",
+          "Guid": "0cd42ada44ef482daa762fae98eceab4",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "0,1.1,1.7,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "Cash in hand :"
+          },
+          "HorAlignment": "Right",
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "Type": "Expression"
+        },
+        "7": {
+          "Ident": "StiText",
+          "Name": "Text_4",
+          "Guid": "376ef4f0e1d1455bba95d3ae7d3774a6",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "1.7,1.1,1.4,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "{root.Cash_in_hand}"
+          },
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "TextFormat": {
+            "Ident": "StiCurrencyFormatService",
+            "NegativePattern": 12,
+            "GroupSeparator": ",",
+            "UseGroupSeparator": false,
+            "UseLocalSetting": false,
+            "PositivePattern": 2,
+            "Symbol": "₹"
+          },
+          "Type": "DataColumn"
+        },
+        "8": {
+          "Ident": "StiText",
+          "Name": "Text_5",
+          "Guid": "782013baae2c4fbf91eb8400ae43dc8d",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "0,1.4,1.7,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "Cash Sales:"
+          },
+          "HorAlignment": "Right",
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "Type": "Expression"
+        },
+        "9": {
+          "Ident": "StiText",
+          "Name": "Text_6",
+          "Guid": "142782dcfc704ff18e914093c9c518b2",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "1.7,1.4,1.4,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "{root.Cash_sales}"
+          },
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "TextFormat": {
+            "Ident": "StiCurrencyFormatService",
+            "NegativePattern": 12,
+            "GroupSeparator": ",",
+            "UseGroupSeparator": false,
+            "UseLocalSetting": false,
+            "PositivePattern": 2,
+            "Symbol": "₹"
+          },
+          "Type": "DataColumn"
+        },
+        "10": {
+          "Ident": "StiText",
+          "Name": "Text_2",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "0,0.8,1.7,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "Opening Cash :"
+          },
+          "HorAlignment": "Right",
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "Type": "Expression"
+        },
+        "11": {
+          "Ident": "StiText",
+          "Name": "Text_3",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "1.7,0.8,1.4,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "{root.Opening_Cash}"
+          },
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "TextFormat": {
+            "Ident": "StiCurrencyFormatService",
+            "NegativePattern": 12,
+            "GroupSeparator": ",",
+            "UseGroupSeparator": false,
+            "UseLocalSetting": false,
+            "PositivePattern": 2,
+            "Symbol": "₹"
+          }
+        },
+        "12": {
+          "Ident": "StiText",
+          "Name": "Text5",
+          "Guid": "8b5c0b2b23c8ac5429d5e34b9ae9ded8",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "-0.1,2,1.8,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "Credit Sales :"
+          },
+          "HorAlignment": "Right",
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "Type": "Expression"
+        },
+        "13": {
+          "Ident": "StiText",
+          "Name": "Text6",
+          "Guid": "2edcf73e8f10fdaccf2e3eb5af85ca1a",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "1.7,2,1.4,0.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "{root.Credit_sales}"
+          },
+          "Font": ";10;;",
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "TextBrush": "solid:Black",
+          "TextFormat": {
+            "Ident": "StiCurrencyFormatService",
+            "NegativePattern": 12,
+            "GroupSeparator": ",",
+            "UseGroupSeparator": false,
+            "UseLocalSetting": false,
+            "PositivePattern": 2,
+            "Symbol": "₹"
+          },
+          "Type": "DataColumn"
+        },
+        "14": {
+          "Ident": "StiHorizontalLinePrimitive",
+          "Name": "HorizontalLine2",
+          "Guid": "d1510bcd218b4055bd3f374e6c80f399",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "-0.1,0.7,3.3,0.01",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Style": "Dash",
+          "StartCap": ";;;",
+          "EndCap": ";;;"
+        },
+        "15": {
+          "Ident": "StiHorizontalLinePrimitive",
+          "Name": "HorizontalLinePrimitive1",
+          "Guid": "11616f0b27dd46a581d09b7798f638d7",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "0,2.6,3.3,0.01",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Style": "Dash",
+          "StartCap": ";;;",
+          "EndCap": ";;;"
+        }
+      },
+      "PageWidth": 3.15,
+      "PageHeight": 11.69,
+      "Watermark": {
+        "TextBrush": "solid:50,0,0,0"
+      },
+      "Margins": {
+        "Left": 0.0,
+        "Right": 0.0,
+        "Top": 0.302,
+        "Bottom": 0.306
+      }
+    }
+  }
+}
